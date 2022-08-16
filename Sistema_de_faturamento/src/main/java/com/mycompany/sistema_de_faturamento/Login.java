@@ -12,6 +12,7 @@ public class Login {
     private String nome;
     private String tipo;
     private String senha;
+    private String email;
 
     /**
      * @return the nome
@@ -53,6 +54,20 @@ public class Login {
      */
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     
