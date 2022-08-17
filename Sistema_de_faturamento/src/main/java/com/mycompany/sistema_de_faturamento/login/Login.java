@@ -70,6 +70,15 @@ public class Login {
         this.email = email;
     }
     
+    public void criarLogin(String nome, String senha, String email){
+        this.nome = nome;
+        this.senha = senha;
+        this.email = email;
+        
+    }
     
+    public String retornarTesteConteudo(){
+        return this.nome + "\n" + this.senha + "\n" + "\n" + this.email;
+    }
     
 }

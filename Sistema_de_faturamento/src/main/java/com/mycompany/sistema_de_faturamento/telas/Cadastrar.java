@@ -4,6 +4,8 @@
  */
 package com.mycompany.sistema_de_faturamento.telas;
 
+import com.mycompany.sistema_de_faturamento.login.Login;
+
 /**
  *
  * @author Jackson
@@ -126,7 +128,12 @@ public class Cadastrar extends javax.swing.JFrame {
 
     private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
         
-        Login login = new Login();
+        Login criarLogin = new Login();
+        criarLogin.criarLogin(nome.getText(), senha.getText(), email.getText());
+        System.out.println(criarLogin.retornarTesteConteudo());
+        
+        
+        LoginTela login = new LoginTela();
         login.setVisible(rootPaneCheckingEnabled);
         setVisible(false);
     }//GEN-LAST:event_salvarActionPerformed
