@@ -11,9 +11,14 @@ package com.mycompany.sistema_de_faturamento;
 public class Produto {
     private String nome;
     private int id;
-    private float valor;
+    private double valor;
 
-    public Produto(String nome, int id, float valor) {
+    public  Produto(){
+        
+    }
+    
+    
+    public void addProduto(String nome, int id, double valor) {
         this.nome = nome;
         this.id = id;
         this.valor = valor;
@@ -51,19 +56,19 @@ public class Produto {
     /**
      * @return the valor
      */
-    public float getValor() {
+    public double getValor() {
         return valor;
     }
 
     /**
      * @param valor the valor to set
      */
-    public void setValor(float valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 
+   
     
-    
-    
+     
     
 }

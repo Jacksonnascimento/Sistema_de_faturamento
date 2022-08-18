@@ -78,7 +78,7 @@ public class Login {
     }
     
     public String retornarTesteConteudo(){
-        return this.nome + "\n" + this.senha + "\n" + "\n" + this.email;
+        return this.nome + "\n" + this.senha + "\n" + this.email;
     }
     
 }

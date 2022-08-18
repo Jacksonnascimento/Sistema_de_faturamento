@@ -5,19 +5,43 @@
 package com.mycompany.sistema_de_faturamento;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  *
  * @author jacks
  */
-public class Produtos {
-    ArrayList<Produto> produtos = new ArrayList<>();
+public final class Produtos {
 
-    public Produtos(String nome, int id, float valor) {
-         Produto produto = new Produto(nome, id, valor);
-         produtos.add(produto);
-         
+    private ArrayList<Produto> produtos = new ArrayList<>();
+    Produto produto;
+
+
+    public void AddProdutos(String nome, int id, double valor) {
+        produto = new Produto();
+        produto.addProduto(nome, id, valor);
+        produtos.add(produto);
+
     }
-    
-    
+
+    public void AddProdutos(ArrayList<Produto> pros) {
+        this.produtos = pros;
+    }
+
+    public ArrayList<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public Produto oProduto(int id) {
+        for (Produto pro : produtos) {
+            if (pro.getId() == id) {
+                return pro;
+            }
+        }
+        System.out.println("Não existe produto com esse id. O sistema será fechado");
+        System.exit(0);
+        return null;
+
+    }
+
 }
