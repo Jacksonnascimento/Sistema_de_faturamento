@@ -10,7 +10,8 @@ package com.mycompany.sistema_de_faturamento;
  */
 public class Estoque {
     private int quantidade;
-    private int qt;
+    private int id;
+    private int idProduto;
 
     /**
      * @return the quantidade
@@ -29,15 +30,34 @@ public class Estoque {
     /**
      * @return the qt
      */
-    public int getQt() {
-        return qt;
+ 
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
     }
 
     /**
-     * @param qt the qt to set
+     * @param id the id to set
      */
-    public void setQt(int qt) {
-        this.qt = qt;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the idProduto
+     */
+    public int getIdProduto() {
+        return idProduto;
+    }
+
+    /**
+     * @param idProduto the idProduto to set
+     */
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
     }
     
     
