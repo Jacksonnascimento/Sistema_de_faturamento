@@ -5,7 +5,7 @@
 package com.mycompany.sistema_de_faturamento;
 
 import java.util.ArrayList;
-import java.util.Locale;
+
 
 /**
  *
@@ -14,7 +14,7 @@ import java.util.Locale;
 public final class Produtos {
 
     private ArrayList<Produto> produtos = new ArrayList<>();
-    Produto produto;
+    private Produto produto;
 
 
     public void AddProdutos(String nome, int id, double valor) {
