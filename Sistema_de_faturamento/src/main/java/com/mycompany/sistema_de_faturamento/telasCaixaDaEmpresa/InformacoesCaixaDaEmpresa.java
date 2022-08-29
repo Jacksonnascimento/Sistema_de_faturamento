@@ -5,7 +5,6 @@
 package com.mycompany.sistema_de_faturamento.telasCaixaDaEmpresa;
 
 import com.mycompany.sistema_de_faturamento.CaixaDaEmpresa;
-import javax.swing.JLabel;
 
 /**
  *
@@ -21,15 +20,20 @@ public class InformacoesCaixaDaEmpresa extends javax.swing.JFrame {
         //teste: 
         CaixaDaEmpresa caixa = new CaixaDaEmpresa();
         caixa.setId(1);
-        caixa.setValorDoCaixa(500.14);
-        caixa.setValorTotalDesspesas(100);
-        caixa.valorGanhoPorCompra(1000);
+        caixa.setValorDoCaixa(500.23);
+        caixa.setValorTotalDesspesas(300.23);
+        caixa.valorGanhoPorCompra(14.45);
+        
+        String despesas = String.format("%.2f", caixa.getValorTotalDespesas());
+        String Vcaixa = String.format("%.2f", caixa.getValorDoCaixa());   
+        String lucro = String.format("%.2f",caixa.getLucro()); 
+        String prejuizo = String.format("%.2f",caixa.getPrejuizo()); 
         
                     
-        valorDespesas.setText(Double.toString(caixa.getValorTotalDespesas()));
-        valorEmCaixa.setText(Double.toString(caixa.getValorDoCaixa()));
-        valorLucro.setText(Double.toString(caixa.getLucro()));
-        valorPrejuizo.setText(Double.toString(caixa.getPrejuizo()));
+        valorDespesas.setText(despesas);
+        valorEmCaixa.setText(Vcaixa);
+        valorLucro.setText(lucro);
+        valorPrejuizo.setText(prejuizo);
                 
         
         

@@ -21,7 +21,7 @@ public class CaixaDaEmpresa {
        if(valorDoCaixa > valorTotalDespesas){
            lucro = valorDoCaixa - valorTotalDespesas;
        } else {
-           prejuizo = valorDoCaixa - valorTotalDespesas;
+           prejuizo = valorTotalDespesas - valorDoCaixa;
        }
        
        
