@@ -17,6 +17,7 @@ public final class Produtos {
     private Produto produto;
 
 
+    //adicionar os produtos a arraylist
     public void AddProdutos(String nome, int id, double valor) {
         produto = new Produto();
         produto.addProduto(nome, id, valor);
@@ -24,14 +25,12 @@ public final class Produtos {
 
     }
 
-    public void AddProdutos(ArrayList<Produto> pros) {
-        this.produtos = pros;
-    }
 
     public ArrayList<Produto> getProdutos() {
         return produtos;
     }
 
+    //buscar o produto pelo id
     public Produto oProduto(int id) {
         for (Produto pro : produtos) {
             if (pro.getId() == id) {

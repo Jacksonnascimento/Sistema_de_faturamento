@@ -16,7 +16,7 @@ public class VendaProduto {
     private double troco = 0;
     
     
-    
+    //calcular o troco
     public double troco(){
         if(valorPago > valorDaVenda){
           troco =  valorPago - valorDaVenda;

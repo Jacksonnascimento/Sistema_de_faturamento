@@ -16,6 +16,7 @@ public class Caixa {
    private double lucro = 0;
    
    
+   //atribuir valor do prejuizo ou lucro da empresa
    public void PrejuizoOuLucro(){
        if(valorDoCaixa > valorTotalDespesas){
            lucro = valorDoCaixa - valorTotalDespesas;

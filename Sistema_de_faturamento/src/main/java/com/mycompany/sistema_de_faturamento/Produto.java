@@ -17,7 +17,7 @@ public class Produto {
         
     }
     
-    
+    //adicionar produto
     public void addProduto(String nome, int id, double valor) {
         this.nome = nome;
         this.id = id;

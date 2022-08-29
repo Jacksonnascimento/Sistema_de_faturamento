@@ -14,6 +14,7 @@ public class Despesas {
    private ArrayList<Despesa> despesas = new ArrayList<>();
    private Despesa despesa;
     
+   //adicionar desesas a arraylist 
     public void addDespesas(String tipo, String descricao, int id, double valor){
         despesa = new Despesa();
         despesa.addDespesa(tipo, descricao, id, valor);
@@ -21,6 +22,7 @@ public class Despesas {
     
     }
     
+    //retorna despesa pelo id
     public Despesa aDespesa(int id){
         for (Despesa de : despesas){
             if(de.getId() == id){
@@ -32,6 +34,7 @@ public class Despesas {
         return null;
     }
     
+    //calcular valor total das despesas 
     public double valortotal(){
         double valorTotal = 0;
         for (Despesa de : despesas){
