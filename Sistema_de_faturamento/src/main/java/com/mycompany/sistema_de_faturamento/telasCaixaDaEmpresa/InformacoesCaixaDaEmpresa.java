@@ -23,13 +23,13 @@ public class InformacoesCaixaDaEmpresa extends javax.swing.JFrame {
         caixa.setId(1);
         caixa.setValorDoCaixa(500.14);
         caixa.setValorTotalDesspesas(100);
+        caixa.valorGanhoPorCompra(1000);
         
-        
+                    
         valorDespesas.setText(Double.toString(caixa.getValorTotalDespesas()));
         valorEmCaixa.setText(Double.toString(caixa.getValorDoCaixa()));
         valorLucro.setText(Double.toString(caixa.getLucro()));
         valorPrejuizo.setText(Double.toString(caixa.getPrejuizo()));
-        
                 
         
         
