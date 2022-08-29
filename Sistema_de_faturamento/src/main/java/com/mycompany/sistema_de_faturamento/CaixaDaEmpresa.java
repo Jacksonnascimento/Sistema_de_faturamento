@@ -8,9 +8,9 @@ package com.mycompany.sistema_de_faturamento;
  *
  * @author Jackson
  */
-public class Caixa {
+public class CaixaDaEmpresa {
    private int id;
-   private double valorDoCaixa;
+   private double valorDoCaixa = 0;
    private double valorTotalDespesas;
    private double prejuizo = 0;
    private double lucro = 0;
@@ -25,6 +25,11 @@ public class Caixa {
        }
        
        
+   }
+   
+   //somar valor ganho por uma nova compra
+   public void valorGanhoPorCompra(double valorGanho){
+       this.valorDoCaixa  += valorGanho;
    }
    
    
@@ -74,6 +79,7 @@ public class Caixa {
      * @return the prejuizo
      */
     public double getPrejuizo() {
+        PrejuizoOuLucro();
         return prejuizo;
     }
 
@@ -81,6 +87,7 @@ public class Caixa {
      * @return the lucro
      */
     public double getLucro() {
+        PrejuizoOuLucro();
         return lucro;
     }
    
