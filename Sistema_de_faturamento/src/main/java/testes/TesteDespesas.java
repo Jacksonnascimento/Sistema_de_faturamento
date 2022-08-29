@@ -18,10 +18,10 @@ public class TesteDespesas {
             despesas.addDespesas(("Tipo " + i), ("Descrição " + i), i, (10.01 * i));
         }
         
-        System.out.println(despesas.aDespesa(1).getTipo());
-        System.out.println(despesas.aDespesa(1).getDescricao());
-        System.out.println(despesas.aDespesa(1).getValor());
-        System.out.println(despesas.aDespesa(1).getId());
+        System.out.println(despesas.aDespesa(2).getTipo());
+        System.out.println(despesas.aDespesa(2).getDescricao());
+        System.out.println(despesas.aDespesa(2).getValor());
+        System.out.println(despesas.aDespesa(2).getId());
         System.out.println("-------------------------------------------------------");
         System.out.println(despesas.valortotal());
         

@@ -11,8 +11,22 @@ package com.mycompany.sistema_de_faturamento;
 public class Caixa {
    private int id;
    private double valorDoCaixa;
-   private double valorTotalDesspesas;
-
+   private double valorTotalDespesas;
+   private double prejuizo = 0;
+   private double lucro = 0;
+   
+   
+   public void PrejuizoOuLucro(){
+       if(valorDoCaixa > valorTotalDespesas){
+           lucro = valorDoCaixa - valorTotalDespesas;
+       } else {
+           prejuizo = valorDoCaixa - valorTotalDespesas;
+       }
+       
+       
+   }
+   
+   
     /**
      * @return the id
      */
@@ -42,17 +56,31 @@ public class Caixa {
     }
 
     /**
-     * @return the valorTotalDesspesas
+     * @return the valorTotalDespesas
      */
-    public double getValorTotalDesspesas() {
-        return valorTotalDesspesas;
+    public double getValorTotalDespesas() {
+        return valorTotalDespesas;
     }
 
     /**
-     * @param valorTotalDesspesas the valorTotalDesspesas to set
+     * @param valorTotalDespesas the valorTotalDespesas to set
      */
-    public void setValorTotalDesspesas(double valorTotalDesspesas) {
-        this.valorTotalDesspesas = valorTotalDesspesas;
+    public void setValorTotalDesspesas(double valorTotalDespesas) {
+        this.valorTotalDespesas = valorTotalDespesas;
+    }
+
+    /**
+     * @return the prejuizo
+     */
+    public double getPrejuizo() {
+        return prejuizo;
+    }
+
+    /**
+     * @return the lucro
+     */
+    public double getLucro() {
+        return lucro;
     }
    
    
