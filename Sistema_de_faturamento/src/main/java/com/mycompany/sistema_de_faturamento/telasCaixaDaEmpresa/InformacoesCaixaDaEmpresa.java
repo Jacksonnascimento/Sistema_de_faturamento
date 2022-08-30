@@ -24,10 +24,10 @@ public class InformacoesCaixaDaEmpresa extends javax.swing.JFrame {
         caixa.setValorTotalDesspesas(300.23);
         caixa.valorGanhoPorCompra(14.45);
         
-        String despesas = String.format("%.2f", caixa.getValorTotalDespesas());
-        String Vcaixa = String.format("%.2f", caixa.getValorDoCaixa());   
-        String lucro = String.format("%.2f",caixa.getLucro()); 
-        String prejuizo = String.format("%.2f",caixa.getPrejuizo()); 
+        String despesas = "R$ " + String.format("%.2f", caixa.getValorTotalDespesas());
+        String Vcaixa = "R$ " + String.format("%.2f", caixa.getValorDoCaixa());   
+        String lucro = "R$ " + String.format("%.2f",caixa.getLucro()); 
+        String prejuizo = "R$ " + String.format("%.2f",caixa.getPrejuizo()); 
         
                     
         valorDespesas.setText(despesas);
