@@ -31,7 +31,7 @@ public class TelaVendas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         adicionar = new javax.swing.JButton();
         remover = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        listaProdutos = new javax.swing.JComboBox<>();
         valorDoProduto = new javax.swing.JLabel();
         carrinho = new javax.swing.JButton();
         list1 = new java.awt.List();
@@ -53,7 +53,13 @@ public class TelaVendas extends javax.swing.JFrame {
 
         remover.setText("Remover");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        listaProdutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        listaProdutos.setToolTipText("");
+        listaProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaProdutosActionPerformed(evt);
+            }
+        });
 
         valorDoProduto.setText("Valor do produto");
 
@@ -86,7 +92,7 @@ public class TelaVendas extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(carrinho))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(listaProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(27, 27, 27)
                                     .addComponent(valorDoProduto)))))
                     .addGroup(layout.createSequentialGroup()
@@ -105,7 +111,7 @@ public class TelaVendas extends javax.swing.JFrame {
                     .addComponent(nomeDoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listaProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(valorDoProduto))
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -123,6 +129,10 @@ public class TelaVendas extends javax.swing.JFrame {
     private void cpfdoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfdoClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cpfdoClienteActionPerformed
+
+    private void listaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaProdutosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listaProdutosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,9 +173,9 @@ public class TelaVendas extends javax.swing.JFrame {
     private javax.swing.JButton adicionar;
     private javax.swing.JButton carrinho;
     private javax.swing.JTextField cpfdoCliente;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private java.awt.List list1;
+    private javax.swing.JComboBox<String> listaProdutos;
     private javax.swing.JLabel nomeDoCliente;
     private javax.swing.JButton remover;
     private javax.swing.JLabel valorDoProduto;
