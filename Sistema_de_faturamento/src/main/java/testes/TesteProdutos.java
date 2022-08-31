@@ -10,7 +10,7 @@ import com.mycompany.sistema_de_faturamento.Produtos;
 
 /**
  *
- * @author jacks
+ * @author jackson
  */
 public class TesteProdutos {
     
