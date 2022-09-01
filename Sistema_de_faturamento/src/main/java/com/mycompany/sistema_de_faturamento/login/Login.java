@@ -4,6 +4,9 @@
  */
 package com.mycompany.sistema_de_faturamento.login;
 
+import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
+import java.sql.SQLException;
+
 /**
  *
  * @author jacks
@@ -14,6 +17,7 @@ public class Login {
     private String tipo;
     private String senha;
     private String email;
+    private String nomeUsuario;
 
     /**
      * @return the nome
@@ -94,6 +98,45 @@ public class Login {
      */
     public void setId(int id) {
         this.id = id;
+    }
+    
+    
+    
+    public boolean buscarInfoBanco(String usr, String senha) throws SQLException{
+        BancoDados banco = new BancoDados();
+        String resultado = banco.banco(1, "SELECT * FROM USUARIO WHERE NOME_USUARIO = " + usr 
+                + " AND " + "SENHA=" + senha, 6);
+        
+        if(resultado != null){
+            
+            String[] select = resultado.split(",");
+            
+            setId(Integer.parseInt(select[0]));
+            setNome(select[1]);
+            setNomeUsuario(select[2]);
+            setTipo(select[3]);
+            setSenha(select[4]);
+            setEmail(select[5]);
+
+            System.out.println(getNome());
+            return true;
+        } else 
+            return false;
+    
+    }
+
+    /**
+     * @return the nomeUsuario
+     */
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    /**
+     * @param nomeUsuario the nome_usuario to set
+     */
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
     
 }

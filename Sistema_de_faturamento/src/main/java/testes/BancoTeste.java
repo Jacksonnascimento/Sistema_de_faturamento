@@ -5,6 +5,7 @@
 package testes;
 
 import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
+import com.mycompany.sistema_de_faturamento.login.Login;
 import java.sql.SQLException;
 
 
@@ -15,7 +16,7 @@ import java.sql.SQLException;
 public class BancoTeste {
     
     public static void main(String[] args) throws SQLException  {
-        BancoDados banco;
+      /*  BancoDados banco;
         banco = new BancoDados();
         banco.banco(2, "UPDATE USUARIO SET EMAIL = 'helber@hotmail.com' WHERE ID = 2", 0);
         
@@ -27,7 +28,10 @@ public class BancoTeste {
             System.out.println("Coluna " + i + ": " + textoSeparado[i]);
         }
       
-       
+       */
+      
+        Login login = new Login();
+        login.buscarInfoBanco("'jack'", "'87519023'");
         
         
     }
