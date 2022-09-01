@@ -75,16 +75,16 @@ public class Login {
         this.email = email;
     }
     
-    public void criarLogin(String nome, String senha, String email){
+    public void criarLogin(int id, String nome, String senha, String email, String nomeUsuario){
         this.nome = nome;
         this.senha = senha;
         this.email = email;
+        this.id = id;
+        this.nomeUsuario = nomeUsuario;
         
     }
     
-    public String retornarTesteConteudo(){
-        return this.nome + "\n" + this.senha + "\n" + this.email;
-    }
+   
 
     /**
      * @return the id
@@ -101,7 +101,7 @@ public class Login {
     }
     
     
-    
+    //metodo para buscar as informações no banco
     public boolean buscarInfoBanco(String usr, String senha) throws SQLException{
         BancoDados banco = new BancoDados();
         String resultado = banco.banco(1, "SELECT * FROM USUARIO WHERE NOME_USUARIO = " + usr 
@@ -111,12 +111,8 @@ public class Login {
             
             String[] select = resultado.split(",");
             
-            setId(Integer.parseInt(select[0]));
-            setNome(select[1]);
-            setNomeUsuario(select[2]);
-            setTipo(select[3]);
-            setSenha(select[4]);
-            setEmail(select[5]);
+            criarLogin(Integer.parseInt(select[0]), select[1], select[4], select[5], select[2]);
+            
 
             System.out.println(getNome());
             return true;
