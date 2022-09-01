@@ -15,7 +15,8 @@ import java.sql.Statement;
  */
 public class BancoDados {
     
-        public static void main(String[] args) {
+        public String banco(int tipo, String query) {
+        String resultado = "";
         String connectionUrl =
                 "jdbc:sqlserver://localhost:1433;"
                 + "database=FPG_WEB_CM_COCOS;"
@@ -31,17 +32,32 @@ public class BancoDados {
                 Statement statement = connection.createStatement();) {
 
             // Create and execute a SELECT SQL statement.
-            String selectSql = "SELECT TOP 10 COM_ANO FROM FPG_FOLHA";
-            resultSet = statement.executeQuery(selectSql);
+            
+            if(tipo == 1){
+               resultSet = statement.executeQuery(query);
+               
+                while (resultSet.next()) {
+                resultado += resultSet.getString(1);
+                return resultado;
+                }
+                
+               
+            } else if (tipo == 2){
+                statement.executeQuery(query);
+            }
+            
+            
 
-            // Print results from select statement
+          /*  // Print results from select statement
             while (resultSet.next()) {
                 System.out.println(resultSet.getString(1));
-            }
+            } */
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
+        
+        return null;
     }
 
 }
