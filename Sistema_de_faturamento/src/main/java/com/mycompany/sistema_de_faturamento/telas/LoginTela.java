@@ -136,7 +136,8 @@ public class LoginTela extends javax.swing.JFrame {
        Login login = new Login();
         try {
             if(login.buscarInfoBanco(usr , senha)){
-                System.out.println("Login");
+                JOptionPane.showMessageDialog(null, "Seja bem-vindo ao sistema de faturamento!");
+                setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto");
                 usuario.setText(null);

@@ -31,7 +31,8 @@ public class BancoTeste {
        */
       
         Login login = new Login();
-        login.buscarInfoBanco("'jack'", "'87519023'");
+        //login.buscarInfoBanco("'jack'", "'87519023'");
+        login.criarLoginBanco("Jaqueline Nascimento", "jaqueline", "USR", "872", "@hotmail.com");
         
         
     }

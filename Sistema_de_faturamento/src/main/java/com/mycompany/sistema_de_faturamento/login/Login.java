@@ -85,6 +85,23 @@ public class Login {
         
     }
     
+    public void criarLoginBanco(String nome, String nomeUsuario, String tipo, String senha, String email) throws SQLException{
+        this.nome = "'" + nome + "',";
+        this.nomeUsuario = "'" + nomeUsuario + "',";
+        this.tipo = "'" + tipo + "',";
+        this.senha = "'" + senha + "',";
+        this.email = "'" + email + "'";
+        
+        
+        String insert = "INSERT INTO USUARIO VALUES(" + this.nome 
+                + this.nomeUsuario + this.tipo + 
+                this.senha + this.email +")";
+        
+      BancoDados banco = new BancoDados();
+        
+       banco.banco(2, insert, 0);
+    }
+    
    
 
     /**
