@@ -17,9 +17,15 @@ public class BancoTeste {
     public static void main(String[] args) throws SQLException  {
         BancoDados banco;
         banco = new BancoDados();
-        String resultado = banco.banco(1, "SELECT * FROM USUARIO WHERE NOME_USUARIO = 'helber'", 6);
+        banco.banco(2, "UPDATE USUARIO SET EMAIL = 'helber@hotmail.com' WHERE ID = 2", 0);
         
-        System.out.println(resultado);
+        banco = new BancoDados();
+        String resultado = banco.banco(1, "SELECT * FROM USUARIO WHERE NOME_USUARIO = 'helber'", 6);
+        String[] textoSeparado = resultado.split(",");
+        
+        for (int i = 0; i < textoSeparado.length  - 1; i++){
+            System.out.println("Coluna " + i + ": " + textoSeparado[i]);
+        }
       
        
         

@@ -33,6 +33,8 @@ public class BancoDados {
         //  try (Connection connection = DriverManager.getConnection(connectionUrl);
         //        Statement statement = connection.createStatement();) {
         // Create and execute a SELECT SQL statement.
+        
+        //tipo == 1 quando precisar fazer um select
         if (tipo == 1) {
 
             try ( Connection connection = DriverManager.getConnection(connectionUrl);  Statement statement = connection.createStatement();) {
@@ -53,7 +55,7 @@ public class BancoDados {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        } else if (tipo == 2) {
+        } else if (tipo == 2) { //tipo == 2 quando precisar fazer insert ou update
             try ( Connection connection = DriverManager.getConnection(connectionUrl);  PreparedStatement prepsInsertProduct = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
                 prepsInsertProduct.execute();
                 connection.close();
