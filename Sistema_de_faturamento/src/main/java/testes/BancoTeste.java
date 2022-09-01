@@ -17,7 +17,7 @@ public class BancoTeste {
     public static void main(String[] args) throws SQLException  {
         BancoDados banco;
         banco = new BancoDados();
-        String resultado = banco.banco(1, "SELECT NOME FROM USUARIO WHERE NOME_USUARIO = 'jack'");
+        String resultado = banco.banco(1, "SELECT * FROM USUARIO WHERE NOME_USUARIO = 'helber'", 6);
         
         System.out.println(resultado);
       

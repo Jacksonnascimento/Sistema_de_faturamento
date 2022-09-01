@@ -17,7 +17,7 @@ import java.sql.Statement;
  */
 public class BancoDados {
 
-    public String banco(int tipo, String query) throws SQLException {
+    public String banco(int tipo, String query, int quantColunas) throws SQLException {
         String resultado = "";
         String connectionUrl
                 = "jdbc:sqlserver://localhost:1433;"
@@ -40,10 +40,14 @@ public class BancoDados {
                 // Create and execute a SELECT SQL statement.
                 String selectSql = query;
                 resultSet = statement.executeQuery(selectSql);
-
+                
                 // Print results from select statement
                 while (resultSet.next()) {
-                    resultado += resultSet.getString(1);
+                    for(int i = 1; i <= quantColunas; i++){
+                        resultado += resultSet.getString(i) + ", ";
+                    }
+                    
+                    connection.close();
                     return resultado;
                 }
             } catch (SQLException e) {
@@ -52,8 +56,10 @@ public class BancoDados {
         } else if (tipo == 2) {
             try ( Connection connection = DriverManager.getConnection(connectionUrl);  PreparedStatement prepsInsertProduct = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
                 prepsInsertProduct.execute();
+                connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
+                
             }
         }
 
