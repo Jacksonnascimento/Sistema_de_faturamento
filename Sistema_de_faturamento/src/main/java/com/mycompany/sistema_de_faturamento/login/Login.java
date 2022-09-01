@@ -75,12 +75,13 @@ public class Login {
         this.email = email;
     }
     
-    public void criarLogin(int id, String nome, String senha, String email, String nomeUsuario){
+    public void criarLogin(int id, String nome, String nomeUsuario, String tipo, String senha, String email ){
         this.nome = nome;
         this.senha = senha;
         this.email = email;
         this.id = id;
         this.nomeUsuario = nomeUsuario;
+        this.tipo = tipo;
         
     }
     
@@ -111,10 +112,16 @@ public class Login {
             
             String[] select = resultado.split(",");
             
-            criarLogin(Integer.parseInt(select[0]), select[1], select[4], select[5], select[2]);
+            //int id, String nome, String nomeUsuario, String tipo, String senha, String email 
+            criarLogin(Integer.parseInt(select[0]), select[1], select[2], 
+                    select[3], select[4], select[5]);
             
-
-            System.out.println(getNome());
+           /* System.out.println("Nome: " + getNome());
+            System.out.println("Email: " + getEmail());
+            System.out.println("ID: " +getId());
+            System.out.println("Nome de Usuário: " + getNomeUsuario());
+            System.out.println("Tipo da conta: " + getTipo());
+            System.out.println("Senha: " + getSenha()); */ 
             return true;
         } else 
             return false;

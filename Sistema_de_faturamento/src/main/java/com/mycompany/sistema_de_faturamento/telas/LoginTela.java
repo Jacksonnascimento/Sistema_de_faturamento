@@ -4,6 +4,12 @@
  */
 package com.mycompany.sistema_de_faturamento.telas;
 
+import com.mycompany.sistema_de_faturamento.login.Login;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jackson
@@ -128,7 +134,21 @@ public class LoginTela extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastrarActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-       System.out.println(usuario.getText());
+       
+       String usr = "'" + usuario.getText()  + "'";
+       String senha = "'" + this.senha.getText()  + "'";
+       Login login = new Login();
+        try {
+            if(login.buscarInfoBanco(usr , senha)){
+                System.out.println("Login");
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto");
+                usuario.setText(null);
+                this.senha.setText(null);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginTela.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_loginActionPerformed
 
     /**
