@@ -6,20 +6,22 @@ package com.mycompany.sistema_de_faturamento.bancoDeDados;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 /**
  *
  * @author jacks
  */
 public class BancoDados {
-    
-        public String banco(int tipo, String query) {
+
+    public String banco(int tipo, String query) throws SQLException {
         String resultado = "";
-        String connectionUrl =
-                "jdbc:sqlserver://localhost:1433;"
-                + "database=FPG_WEB_CM_COCOS;"
+        String connectionUrl
+                = "jdbc:sqlserver://localhost:1433;"
+                + "database=Sistema_Faturamento;"
                 + "user=sa;"
                 + "password=87519023;"
                 + "encrypt=false;"
@@ -28,36 +30,47 @@ public class BancoDados {
 
         ResultSet resultSet = null;
 
-        try (Connection connection = DriverManager.getConnection(connectionUrl);
-                Statement statement = connection.createStatement();) {
+        //  try (Connection connection = DriverManager.getConnection(connectionUrl);
+        //        Statement statement = connection.createStatement();) {
+        // Create and execute a SELECT SQL statement.
+        if (tipo == 1) {
 
-            // Create and execute a SELECT SQL statement.
-            
-            if(tipo == 1){
-               resultSet = statement.executeQuery(query);
+            try ( Connection connection = DriverManager.getConnection(connectionUrl);  Statement statement = connection.createStatement();) {
+
+                // Create and execute a SELECT SQL statement.
+                String selectSql = query;
+                resultSet = statement.executeQuery(selectSql);
+
+                // Print results from select statement
+                while (resultSet.next()) {
+                    resultado += resultSet.getString(1);
+                    return resultado;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else if (tipo == 2) {
+            try ( Connection connection = DriverManager.getConnection(connectionUrl);  PreparedStatement prepsInsertProduct = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
+                prepsInsertProduct.execute();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        /*  resultSet = statement.executeQuery(query);
                
                 while (resultSet.next()) {
                 resultado += resultSet.getString(1);
                 return resultado;
                 }
                 
-               
-            } else if (tipo == 2){
-                statement.executeQuery(query);
-            }
-            
-            
-
-          /*  // Print results from select statement
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString(1));
-            } */
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        
+         */
         return null;
     }
 
+    /*  // Print results from select statement
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString(1));
+            } */
+    // }
 }

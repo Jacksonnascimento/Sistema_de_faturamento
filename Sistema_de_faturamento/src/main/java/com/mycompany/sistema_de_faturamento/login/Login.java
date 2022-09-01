@@ -9,6 +9,7 @@ package com.mycompany.sistema_de_faturamento.login;
  * @author jacks
  */
 public class Login {
+    private int id;
     private String nome;
     private String tipo;
     private String senha;
@@ -79,6 +80,20 @@ public class Login {
     
     public String retornarTesteConteudo(){
         return this.nome + "\n" + this.senha + "\n" + this.email;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
     
 }

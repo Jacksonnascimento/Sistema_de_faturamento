@@ -5,6 +5,7 @@
 package testes;
 
 import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
+import java.sql.SQLException;
 
 
 /**
@@ -13,11 +14,13 @@ import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
  */
 public class BancoTeste {
     
-    public static void main(String[] args)  {
-        BancoDados banco = new BancoDados();
-        String resultado = banco.banco(1, "SELECT PES_NOME, PES_COD FROM GER_PESSOA where pes_cod = 58");
+    public static void main(String[] args) throws SQLException  {
+        BancoDados banco;
+        banco = new BancoDados();
+        String resultado = banco.banco(1, "SELECT NOME FROM USUARIO WHERE NOME_USUARIO = 'jack'");
         
         System.out.println(resultado);
+      
        
         
         

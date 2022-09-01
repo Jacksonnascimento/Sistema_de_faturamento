@@ -56,6 +56,11 @@ public class LoginTela extends javax.swing.JFrame {
         });
 
         login.setText("Login");
+        login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginActionPerformed(evt);
+            }
+        });
 
         cadastrar.setText("Cadastrar");
         cadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -121,6 +126,10 @@ public class LoginTela extends javax.swing.JFrame {
         cadastro.setVisible(rootPaneCheckingEnabled);
         
     }//GEN-LAST:event_cadastrarActionPerformed
+
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+       System.out.println(usuario.getText());
+    }//GEN-LAST:event_loginActionPerformed
 
     /**
      * @param args the command line arguments
