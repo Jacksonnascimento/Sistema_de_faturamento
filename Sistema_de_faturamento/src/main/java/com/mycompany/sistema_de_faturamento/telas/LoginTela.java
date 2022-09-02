@@ -21,7 +21,7 @@ public class LoginTela extends javax.swing.JFrame {
      */
     public LoginTela() {
         initComponents();
-        
+
     }
 
     /**
@@ -126,16 +126,16 @@ public class LoginTela extends javax.swing.JFrame {
     private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
         Cadastrar cadastro = new Cadastrar();
         cadastro.setVisible(rootPaneCheckingEnabled);
-        
+
     }//GEN-LAST:event_cadastrarActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-       
-       String usr = usuario.getText();
-       String senha = this.senha.getText();
-       Login login = new Login();
+
+        String usr = usuario.getText();
+        String senha = this.senha.getText();
+        Login login = new Login();
         try {
-            if(login.buscarInfoBanco(usr , senha)){
+            if (login.buscarInfoBanco(usr, senha)) {
                 JOptionPane.showMessageDialog(null, "Seja bem-vindo ao sistema de faturamento!");
                 setVisible(false);
             } else {
