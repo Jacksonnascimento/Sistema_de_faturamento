@@ -131,8 +131,8 @@ public class LoginTela extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
        
-       String usr = "'" + usuario.getText()  + "'";
-       String senha = "'" + this.senha.getText()  + "'";
+       String usr = usuario.getText();
+       String senha = this.senha.getText();
        Login login = new Login();
         try {
             if(login.buscarInfoBanco(usr , senha)){

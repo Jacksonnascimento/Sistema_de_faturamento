@@ -86,16 +86,11 @@ public class Login {
     }
     
     public void criarLoginBanco(String nome, String nomeUsuario, String tipo, String senha, String email) throws SQLException{
-        this.nome = "'" + nome + "',";
-        this.nomeUsuario = "'" + nomeUsuario + "',";
-        this.tipo = "'" + tipo + "',";
-        this.senha = "'" + senha + "',";
-        this.email = "'" + email + "'";
         
         
-        String insert = "INSERT INTO USUARIO VALUES(" + this.nome 
-                + this.nomeUsuario + this.tipo + 
-                this.senha + this.email +")";
+    String insert = String.format("INSERT INTO USUARIO VALUES ('%s', '%s', '%s', '%s', '%s')",
+                nome, nomeUsuario, tipo, senha, email); 
+       
         
       BancoDados banco = new BancoDados();
         
@@ -121,24 +116,20 @@ public class Login {
     
     //metodo para buscar as informações no banco
     public boolean buscarInfoBanco(String usr, String senha) throws SQLException{
+        String select = String.format("SELECT * FROM USUARIO WHERE NOME_USUARIO = '%s' AND SENHA='%s'", usr, senha);
         BancoDados banco = new BancoDados();
-        String resultado = banco.banco(1, "SELECT * FROM USUARIO WHERE NOME_USUARIO = " + usr 
-                + " AND " + "SENHA=" + senha, 6);
+        String resultado = banco.banco(1, select, 6);
+        /*String resultado = banco.banco(1, "SELECT * FROM USUARIO WHERE NOME_USUARIO = " + usr 
+                + " AND " + "SENHA=" + senha, 6);*/
         
         if(resultado != null){
             
-            String[] select = resultado.split(",");
+            String[] colunas = resultado.split(",");
             
             //int id, String nome, String nomeUsuario, String tipo, String senha, String email 
-            criarLogin(Integer.parseInt(select[0]), select[1], select[2], 
-                    select[3], select[4], select[5]);
-            
-           /* System.out.println("Nome: " + getNome());
-            System.out.println("Email: " + getEmail());
-            System.out.println("ID: " +getId());
-            System.out.println("Nome de Usuário: " + getNomeUsuario());
-            System.out.println("Tipo da conta: " + getTipo());
-            System.out.println("Senha: " + getSenha()); */ 
+            criarLogin(Integer.parseInt(colunas[0]), colunas[1], colunas[2], 
+                    colunas[3], colunas[4], colunas[5]);
+   
             return true;
         } else 
             return false;
