@@ -142,16 +142,16 @@ public class Cadastrar extends javax.swing.JFrame {
     private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
         Login login = new Login();
         
-        try {
+        if (nome.getText() != " " && senha.getText() != " "){
+            try {
             login.criarLoginBanco(nome.getText(), user.getText(), "", senha.getText(), email.getText());
         } catch (SQLException ex) {
             Logger.getLogger(Cadastrar.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
-        LoginTela loginTela = new LoginTela();
-        loginTela.setVisible(rootPaneCheckingEnabled);
         setVisible(false);
+        }
+        
     }//GEN-LAST:event_salvarActionPerformed
 
     private void senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaActionPerformed
