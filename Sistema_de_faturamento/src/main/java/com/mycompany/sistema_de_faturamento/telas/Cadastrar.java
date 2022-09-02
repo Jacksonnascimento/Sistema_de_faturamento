@@ -144,7 +144,7 @@ public class Cadastrar extends javax.swing.JFrame {
 
         if (nome.getText() != " " && senha.getText() != " ") {
             try {
-                login.criarLoginBanco(nome.getText(), user.getText(), "", senha.getText(), email.getText());
+                login.criarLoginBanco(nome.getText(), user.getText(), "USR", senha.getText(), email.getText());
             } catch (SQLException ex) {
                 Logger.getLogger(Cadastrar.class.getName()).log(Level.SEVERE, null, ex);
             }

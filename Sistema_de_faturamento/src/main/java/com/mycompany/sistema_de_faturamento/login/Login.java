@@ -87,7 +87,7 @@ public class Login {
     }
 
     public void criarLoginBanco(String nome, String nomeUsuario, String tipo, String senha, String email) throws SQLException {
-
+        
         String insert = String.format("INSERT INTO USUARIO VALUES ('%s', '%s', '%s', '%s', '%s')",
                 nome, nomeUsuario, tipo, senha, email);
 
