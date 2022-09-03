@@ -4,6 +4,7 @@
  */
 package testes;
 
+import com.mycompany.sistema_de_faturamento.Despesa;
 import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
 import com.mycompany.sistema_de_faturamento.login.Login;
 import java.sql.SQLException;
@@ -16,10 +17,11 @@ import java.sql.SQLException;
 public class BancoTeste {
     
     public static void main(String[] args) throws SQLException  {
-      /*  BancoDados banco;
+        BancoDados banco;
         banco = new BancoDados();
-        banco.banco(2, "UPDATE USUARIO SET EMAIL = 'helber@hotmail.com' WHERE ID = 2", 0);
+        banco.banco(1, "SELECT * FROM DESPESA", 4);
         
+        /*
         banco = new BancoDados();
         String resultado = banco.banco(1, "SELECT * FROM USUARIO WHERE NOME_USUARIO = 'helber'", 6);
         String[] textoSeparado = resultado.split(",");
@@ -30,9 +32,12 @@ public class BancoTeste {
       
        */
       
-        Login login = new Login();
+     /*   Login login = new Login();
         //login.buscarInfoBanco("'jack'", "'87519023'");
-        login.criarLoginBanco("Jaqueline Nascimento", "jaqueline", "USR", "872", "@hotmail.com");
+        login.criarLoginBanco("Jaqueline Nascimento", "jaqueline", "USR", "872", "@hotmail.com"); */ 
+     
+       // Despesa despesa = new Despesa();
+       // despesa.addDespesaBanco("Descrição 2", "tipo 2", 35.51);
         
         
     }

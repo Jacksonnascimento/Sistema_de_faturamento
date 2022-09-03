@@ -5,6 +5,7 @@
 package com.mycompany.sistema_de_faturamento.telas;
 
 import com.mycompany.sistema_de_faturamento.login.Login;
+import com.mycompany.sistema_de_faturamento.telaOpcoes.TelaOpcoes;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -138,6 +139,8 @@ public class LoginTela extends javax.swing.JFrame {
             if (login.buscarInfoBanco(usr, senha)) {
                 JOptionPane.showMessageDialog(null, "Seja bem-vindo ao sistema de faturamento!");
                 setVisible(false);
+                TelaOpcoes telaOpcoes = new TelaOpcoes();
+                telaOpcoes.setVisible(rootPaneCheckingEnabled);
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto");
                 usuario.setText(null);

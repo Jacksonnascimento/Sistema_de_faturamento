@@ -47,17 +47,24 @@ public class BancoDados {
                 while (resultSet.next()) {
                     for(int i = 1; i <= quantColunas; i++){
                         resultado += resultSet.getString(i) + ", ";
+                        
                     }
                     
-                    connection.close();
-                    return resultado;
-                }
+                    resultado += "\n";
+                   
+                } 
+                System.out.println("Conteúdo do select: " + selectSql);
+                connection.close();
+                return resultado;
             } catch (SQLException e) {
                 e.printStackTrace();
+                
+                
             }
         } else if (tipo == 2) { //tipo == 2 quando precisar fazer insert ou update
             try ( Connection connection = DriverManager.getConnection(connectionUrl);  PreparedStatement prepsInsertProduct = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
                 prepsInsertProduct.execute();
+                System.out.println("Conteúdo da query: " + query);
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();

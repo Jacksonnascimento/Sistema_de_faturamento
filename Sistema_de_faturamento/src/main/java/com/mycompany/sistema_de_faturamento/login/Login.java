@@ -115,8 +115,8 @@ public class Login {
         String select = String.format("SELECT * FROM USUARIO WHERE NOME_USUARIO = '%s' AND SENHA='%s'", usr, senha);
         BancoDados banco = new BancoDados();
         String resultado = banco.banco(1, select, 6);
-
-        if (resultado != null) {
+       
+        if (!"".equals(resultado)) {
 
             String[] colunas = resultado.split(",");
             

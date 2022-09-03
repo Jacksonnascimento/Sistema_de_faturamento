@@ -1,5 +1,8 @@
 package com.mycompany.sistema_de_faturamento;
 
+import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
+import java.sql.SQLException;
+
 
 
 /**
@@ -19,6 +22,16 @@ public class Despesa {
         this.descricao = descricao;
         this.id = id;
         this.valor = valor;
+    }
+    
+    //adicionar despesa no banco de dados
+    public void addDespesaBanco(String descricao, String tipo, double valor) throws SQLException{
+      
+        String insert = String.format("INSERT INTO DESPESA VALUES ('%s', '%s', '%s');", descricao, tipo, valor);
+        
+       BancoDados banco = new BancoDados();
+       banco.banco(2, insert, 0);
+        
     }
     
     
