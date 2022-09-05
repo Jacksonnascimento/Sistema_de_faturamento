@@ -53,7 +53,7 @@ public class BancoDados {
                     resultado += "\n";
                    
                 } 
-                System.out.println("Conteúdo do select: " + selectSql);
+                System.out.println("Select: " + selectSql);
                 connection.close();
                 return resultado;
             } catch (SQLException e) {
@@ -64,7 +64,7 @@ public class BancoDados {
         } else if (tipo == 2) { //tipo == 2 quando precisar fazer insert ou update
             try ( Connection connection = DriverManager.getConnection(connectionUrl);  PreparedStatement prepsInsertProduct = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
                 prepsInsertProduct.execute();
-                System.out.println("Conteúdo da query: " + query);
+                System.out.println("Query: " + query);
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();

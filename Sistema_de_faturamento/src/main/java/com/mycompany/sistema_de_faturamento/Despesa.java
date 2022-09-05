@@ -17,7 +17,7 @@ public class Despesa {
 
     
    //adicionar despesa
-    public void addDespesa(String tipo, String descricao, int id, double valor){
+    public void addDespesa(int id, String descricao, String tipo, double valor){
         this.tipo = tipo;
         this.descricao = descricao;
         this.id = id;

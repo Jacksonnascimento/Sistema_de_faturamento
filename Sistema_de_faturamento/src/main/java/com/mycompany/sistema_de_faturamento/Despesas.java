@@ -4,6 +4,8 @@
  */
 package com.mycompany.sistema_de_faturamento;
 
+import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -15,10 +17,30 @@ public class Despesas {
    private Despesa despesa;
     
    //adicionar desesas a arraylist 
-    public void addDespesas(String tipo, String descricao, int id, double valor){
+    public void addDespesas(int id, String descricao, String tipo, double valor){
         despesa = new Despesa();
-        despesa.addDespesa(tipo, descricao, id, valor);
+        despesa.addDespesa(id, descricao, tipo, valor);
         getDespesas().add(despesa);
+    
+    }
+    
+    //adicionar desesas a arraylist 
+    public void BuscarDespesasBanco() throws SQLException{
+        
+        BancoDados banco = new BancoDados();
+        
+        String despesasSelect = banco.banco(1, "SELECT * FROM DESPESA", 4);
+        String [] linhas = despesasSelect.split("\n");
+        
+       for (String linha : linhas) {
+           String[] colunas = linha.split(",");
+           despesa = new Despesa();
+           despesa.addDespesa(Integer.parseInt(colunas[0]), colunas[1], colunas[2], Double.parseDouble(colunas[3]));
+           despesas.add(despesa);
+       }
+        
+        
+        
     
     }
     
