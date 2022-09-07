@@ -5,6 +5,7 @@
 package testes;
 
 import com.mycompany.sistema_de_faturamento.CaixaDaEmpresa;
+import com.mycompany.sistema_de_faturamento.Despesas;
 
 
 import java.sql.SQLException;
@@ -15,10 +16,11 @@ import java.sql.SQLException;
  */
 public class TesteDespesas {
     public static void main(String[] args) throws SQLException {
-        CaixaDaEmpresa caixa = new CaixaDaEmpresa();
-        caixa.buscarInforBanco();
         
-        System.out.println(caixa.getLucro());
+        Despesas despesas = new Despesas();
+        despesas.buscarDespesasBanco();
+        
+        System.out.println(despesas.aDespesa(3).getDescricao());
     
     
     

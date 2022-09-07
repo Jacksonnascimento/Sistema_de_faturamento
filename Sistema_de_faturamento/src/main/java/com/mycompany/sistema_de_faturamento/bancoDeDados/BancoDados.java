@@ -46,7 +46,7 @@ public class BancoDados {
                 // Print results from select statement
                 while (resultSet.next()) {
                     for(int i = 1; i <= quantColunas; i++){
-                        resultado += resultSet.getString(i) + ", ";
+                        resultado += resultSet.getString(i) + ",";
                         
                     }
                     

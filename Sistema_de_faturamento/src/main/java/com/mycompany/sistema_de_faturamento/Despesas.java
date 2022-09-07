@@ -25,7 +25,7 @@ public class Despesas {
     }
     
     //adicionar desesas a arraylist 
-    public void BuscarDespesasBanco() throws SQLException{
+    public void buscarDespesasBanco() throws SQLException{
         
         BancoDados banco = new BancoDados();
         
@@ -34,9 +34,7 @@ public class Despesas {
         
        for (String linha : linhas) {
            String[] colunas = linha.split(",");
-           despesa = new Despesa();
-           despesa.addDespesa(Integer.parseInt(colunas[0]), colunas[1], colunas[2], Double.parseDouble(colunas[3]));
-           despesas.add(despesa);
+           addDespesas(Integer.parseInt(colunas[0]), colunas[1], colunas[2], Double.parseDouble(colunas[3]));
        }
         
         

@@ -4,6 +4,9 @@
  */
 package com.mycompany.sistema_de_faturamento;
 
+import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
+import java.sql.SQLException;
+
 /**
  *
  * @author jacks
@@ -25,6 +28,19 @@ public class Estoque {
      */
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+    
+     public void addEstoque(int id, int idProduto, int quantidade){
+         this.id = id;
+         this.idProduto = idProduto;
+         this.quantidade = quantidade;
+     }
+    
+    public void addQuanBanco(int idProduto, int quantidade) throws SQLException{
+        BancoDados banco = new BancoDados();
+        String insert  = String.format("INSERT INTO ESTOQUE VALUES (%s, %s)", idProduto, quantidade);
+        
+        banco.banco(2, insert, 0);
     }
 
     /**
