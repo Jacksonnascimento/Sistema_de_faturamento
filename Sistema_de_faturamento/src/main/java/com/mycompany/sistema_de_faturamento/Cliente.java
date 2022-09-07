@@ -4,26 +4,46 @@
  */
 package com.mycompany.sistema_de_faturamento;
 
+import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
+import java.sql.SQLException;
+
 /**
  *
  * @author Jackson
  */
 public class Cliente {
-    private String id;
+    private int  id;
     private String nome;
     private String cpf;
+    private String email;
 
+    
+    public void addCliente(int id, String nome, String cpf, String email){
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.setEmail(email);
+    }
+    
+    public void addClienteBanco(String nome, String cpf, String email) throws SQLException{
+        BancoDados banco = new BancoDados();
+        String insert = String.format("INSERT INTO CLIENTE VALUES ('%s', '%s', '%s')", nome, cpf, email);
+        banco.banco(2, insert, 0);
+    }
+    
+    
     /**
      * @return the id
      */
-    public String getId() {
+    
+    public int getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -53,6 +73,20 @@ public class Cliente {
      */
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     
