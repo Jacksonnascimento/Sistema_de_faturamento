@@ -4,6 +4,8 @@
  */
 package com.mycompany.sistema_de_faturamento;
 
+import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -18,10 +20,26 @@ public final class Produtos {
 
 
     //adicionar os produtos a arraylist
-    public void AddProdutos(String nome, int id, double valor) {
+    public void addProdutos( int id, String descricao, double valor) {
         produto = new Produto();
-        produto.addProduto(nome, id, valor);
+        produto.addProduto(id, descricao, valor);
         produtos.add(produto);
+
+    }
+    
+    public void buscarProdutosBancos() throws SQLException {
+        BancoDados banco = new BancoDados();
+        
+        String produtosSelect = banco.banco(1, "SELECT * FROM PRODUTO", 3);
+        String [] linhas = produtosSelect.split("\n");
+        
+       for (String linha : linhas) {
+           String[] colunas = linha.split(",");
+           produto = new Produto();
+           produto.addProduto(Integer.parseInt(colunas[0]), colunas[1], Double.parseDouble(colunas[2]));
+           produtos.add(produto);
+       }
+        
 
     }
 

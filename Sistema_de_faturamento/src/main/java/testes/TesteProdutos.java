@@ -5,7 +5,9 @@
 package testes;
 
 
+import com.mycompany.sistema_de_faturamento.Produto;
 import com.mycompany.sistema_de_faturamento.Produtos;
+import java.sql.SQLException;
 
 
 /**
@@ -14,17 +16,18 @@ import com.mycompany.sistema_de_faturamento.Produtos;
  */
 public class TesteProdutos {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Produtos produtos = new Produtos();
         
-        for(int i = 1; i < 25; i++){
-            produtos.AddProdutos("Produto" + i, i, i + 0.1);
-        }
-    
-      
-      System.out.println(produtos.oProduto(24).getNome());
-      System.out.println(produtos.oProduto(24).getId());
-      System.out.println(produtos.oProduto(24).getValor());
+        produtos.buscarProdutosBancos();
+        
+        /*
+        for(Produto produto : produtos.getProdutos()){
+            System.out.println("Descrição: " + produto.getDscricao() + " Valor: " + produto.getValor() + "\n");
+        } */ 
+        
+        System.out.println(produtos.oProduto(2).getDscricao());
+        System.out.println(produtos.oProduto(2).getValor());
     }
     
 }

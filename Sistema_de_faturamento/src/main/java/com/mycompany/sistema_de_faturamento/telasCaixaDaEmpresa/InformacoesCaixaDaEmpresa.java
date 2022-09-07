@@ -5,6 +5,9 @@
 package com.mycompany.sistema_de_faturamento.telasCaixaDaEmpresa;
 
 import com.mycompany.sistema_de_faturamento.CaixaDaEmpresa;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,14 +18,18 @@ public class InformacoesCaixaDaEmpresa extends javax.swing.JFrame {
     /**
      * Creates new form InformacoesCaixaDaEmpresa
      */
-    public InformacoesCaixaDaEmpresa() {
+    public InformacoesCaixaDaEmpresa() throws SQLException {
         initComponents();
-        //teste: 
+        atualizarInformacoes();
+        
+                
+        
+        
+    }
+    public void atualizarInformacoes() throws SQLException{
         CaixaDaEmpresa caixa = new CaixaDaEmpresa();
-        caixa.setId(1);
-        caixa.setValorDoCaixa(500.23);
-        caixa.setValorTotalDesspesas(300.23);
-        caixa.valorGanhoPorCompra(14.45);
+        caixa.buscarInforBanco();
+        
         
         String despesas = "R$ " + String.format("%.2f", caixa.getValorTotalDespesas());
         String Vcaixa = "R$ " + String.format("%.2f", caixa.getValorDoCaixa());   
@@ -32,11 +39,8 @@ public class InformacoesCaixaDaEmpresa extends javax.swing.JFrame {
                     
         valorDespesas.setText(despesas);
         valorEmCaixa.setText(Vcaixa);
-        valorLucro.setText(lucro);
+        valorPositivo.setText(lucro);
         valorPrejuizo.setText(prejuizo);
-                
-        
-        
     }
 
     /**
@@ -54,10 +58,11 @@ public class InformacoesCaixaDaEmpresa extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         valorDespesas = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        valorLucro = new javax.swing.JLabel();
+        valorPositivo = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         valorPrejuizo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,15 +83,15 @@ public class InformacoesCaixaDaEmpresa extends javax.swing.JFrame {
         valorDespesas.setText("valor");
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel5.setText("Lucro:");
+        jLabel5.setText("Superávit ");
 
-        valorLucro.setBackground(new java.awt.Color(0, 0, 102));
-        valorLucro.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        valorLucro.setForeground(new java.awt.Color(0, 0, 153));
-        valorLucro.setText("valor");
+        valorPositivo.setBackground(new java.awt.Color(0, 0, 102));
+        valorPositivo.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        valorPositivo.setForeground(new java.awt.Color(0, 0, 153));
+        valorPositivo.setText("valor");
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel7.setText("Prejuízo:");
+        jLabel7.setText("Déficit ");
 
         valorPrejuizo.setBackground(new java.awt.Color(0, 0, 102));
         valorPrejuizo.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -96,37 +101,50 @@ public class InformacoesCaixaDaEmpresa extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel2.setText("CAIXA DA EMPRESA");
 
+        jButton1.setText("Atualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(valorEmCaixa))
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(valorEmCaixa))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(valorPositivo)
+                                            .addComponent(valorDespesas)
+                                            .addComponent(valorPrejuizo))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(valorLucro)
-                            .addComponent(valorDespesas)
-                            .addComponent(valorPrejuizo))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(46, 46, 46))
+                        .addGap(174, 174, 174)
+                        .addComponent(jButton1)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -138,17 +156,27 @@ public class InformacoesCaixaDaEmpresa extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(valorLucro)
+                    .addComponent(valorPositivo)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(valorPrejuizo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(45, 45, 45))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(33, 33, 33))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            atualizarInformacoes();
+        } catch (SQLException ex) {
+            Logger.getLogger(InformacoesCaixaDaEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,12 +209,17 @@ public class InformacoesCaixaDaEmpresa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InformacoesCaixaDaEmpresa().setVisible(true);
+                try {
+                    new InformacoesCaixaDaEmpresa().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(InformacoesCaixaDaEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -195,7 +228,7 @@ public class InformacoesCaixaDaEmpresa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel valorDespesas;
     private javax.swing.JLabel valorEmCaixa;
-    private javax.swing.JLabel valorLucro;
+    private javax.swing.JLabel valorPositivo;
     private javax.swing.JLabel valorPrejuizo;
     // End of variables declaration//GEN-END:variables
 }

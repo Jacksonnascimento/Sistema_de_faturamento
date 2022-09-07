@@ -4,12 +4,15 @@
  */
 package com.mycompany.sistema_de_faturamento;
 
+import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
+import java.sql.SQLException;
+
 /**
  *
  * @author jacks
  */
 public class Produto {
-    private String nome;
+    private String descricao;
     private int id;
     private double valor;
 
@@ -18,25 +21,32 @@ public class Produto {
     }
     
     //adicionar produto
-    public void addProduto(String nome, int id, double valor) {
-        this.nome = nome;
+    public void addProduto(int id, String descricao, double valor) {
+        this.descricao = descricao;
         this.id = id;
         this.valor = valor;
+    }
+    
+    public void addProdutoBanco(String descricao, double valor) throws SQLException{
+    
+        String insert = String.format("INSERT INTO PRODUTO VALUES ('%s', '%s');", descricao, valor); 
+        BancoDados banco = new BancoDados();
+        banco.banco(2, insert, 0);
     }
 
     
     /**
      * @return the nome
      */
-    public String getNome() {
-        return nome;
+    public String getDscricao() {
+        return descricao;
     }
 
     /**
-     * @param nome the nome to set
+     * @param descricao the nome to set
      */
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDscricao(String descricao) {
+        this.descricao = descricao;
     }
 
     /**

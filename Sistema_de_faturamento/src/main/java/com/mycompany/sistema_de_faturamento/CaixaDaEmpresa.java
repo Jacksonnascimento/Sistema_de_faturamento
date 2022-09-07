@@ -4,6 +4,9 @@
  */
 package com.mycompany.sistema_de_faturamento;
 
+import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
+import java.sql.SQLException;
+
 /**
  *
  * @author Jackson
@@ -14,6 +17,7 @@ public class CaixaDaEmpresa {
    private double valorTotalDespesas;
    private double prejuizo = 0;
    private double lucro = 0;
+   private BancoDados banco;
    
    
    //atribuir valor do prejuizo ou lucro da empresa
@@ -24,6 +28,28 @@ public class CaixaDaEmpresa {
            prejuizo = valorTotalDespesas - valorDoCaixa;
        }
        
+       
+   }
+   public void buscarInforBanco() throws SQLException{
+       banco = new BancoDados();
+       String caixaSelect = banco.banco(1, "SELECT * FROM CAIXA_EMPRESA WHERE ID = 1", 2);
+       String [] colunas = caixaSelect.split(",");
+       
+       setId(Integer.parseInt(colunas[0]));
+       setValorDoCaixa(Double.parseDouble(colunas[1]));
+       
+       
+      
+       banco = new BancoDados();
+       String  selectValor = banco.banco(1, "SELECT SUM(VALOR) FROM DESPESA", 1);
+       String [] coluna = selectValor.split(",");
+       
+       
+       setValorTotalDesspesas(Double.parseDouble(coluna[0]));
+       
+       PrejuizoOuLucro();
+       
+ 
        
    }
    
