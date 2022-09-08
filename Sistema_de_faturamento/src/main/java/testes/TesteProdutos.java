@@ -17,17 +17,15 @@ import java.sql.SQLException;
 public class TesteProdutos {
     
     public static void main(String[] args) throws SQLException {
-        Produtos produtos = new Produtos();
+        Produto produto;
         
-        produtos.buscarProdutosBancos();
         
-        /*
-        for(Produto produto : produtos.getProdutos()){
-            System.out.println("Descrição: " + produto.getDscricao() + " Valor: " + produto.getValor() + "\n");
-        } */ 
+        for(int i = 0; i < 15; i++){
+            produto = new Produto();
+            produto.addProdutoBanco("Produto teste" + i, 23.1 * i);
+        }
         
-        System.out.println(produtos.oProduto(2).getDscricao());
-        System.out.println(produtos.oProduto(2).getValor());
+        
     }
     
 }

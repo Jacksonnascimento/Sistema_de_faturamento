@@ -6,11 +6,14 @@ package com.mycompany.sistema_de_faturamento.telasDespesas;
 
 import com.mycompany.sistema_de_faturamento.Despesa;
 import com.mycompany.sistema_de_faturamento.Despesas;
+import com.mycompany.sistema_de_faturamento.telaOpcoes.TelaOpcoes;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.plaf.basic.BasicOptionPaneUI;
-import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+
+
 
 /**
  *
@@ -23,6 +26,28 @@ public class ListaDeDespesas extends javax.swing.JFrame {
      */
     public ListaDeDespesas() {
         initComponents();
+        atualizarLista();
+    }
+    
+    private void atualizarLista(){
+         DefaultListModel model = new DefaultListModel();
+       
+        Despesas despesas = new Despesas();
+        try {
+            despesas.buscarDespesasBanco();
+            for(Despesa despesa : despesas.getDespesas()){
+                String valor = "R$ " + String.format("%.2f", despesa.getValor());
+                model.addElement(String.format("ID: %s    | DESCRIÇÃO: %s  |TIPO: %s      | VALOR: R$%s  ", despesa.getId(), despesa.getDescricao(), despesa.getTipo(), valor));
+            }
+            //model.addElement(String.format("%s    | s%  | s%     | s% ", ));
+        } catch (SQLException ex) {
+            Logger.getLogger(ListaDeDespesas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+       
+       
+       lista.setModel(model);
+       
     }
 
     /**
@@ -36,25 +61,33 @@ public class ListaDeDespesas extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaDespesas = new javax.swing.JList<>();
+        lista = new javax.swing.JList<>();
         atualizar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel1.setText("Lista de despesas");
 
-        listaDespesas.setModel(new javax.swing.AbstractListModel<String>() {
+        lista.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(listaDespesas);
+        jScrollPane1.setViewportView(lista);
 
         atualizar.setText("Atualizar");
         atualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 atualizarActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Voltar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -64,38 +97,47 @@ public class ListaDeDespesas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
+                .addComponent(atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(175, 175, 175)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(192, 192, 192))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 868, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(atualizar)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addGap(367, 367, 367)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(atualizar)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
-       
-          
+      atualizarLista();
        
     }//GEN-LAST:event_atualizarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        TelaOpcoes telaOpcoes = new TelaOpcoes();
+        telaOpcoes.setVisible(rootPaneCheckingEnabled);
+        setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,8 +176,9 @@ public class ListaDeDespesas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton atualizar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> listaDespesas;
+    private javax.swing.JList<String> lista;
     // End of variables declaration//GEN-END:variables
 }
