@@ -30,36 +30,29 @@ public class BancoDados {
 
         ResultSet resultSet = null;
 
-        //  try (Connection connection = DriverManager.getConnection(connectionUrl);
-        //        Statement statement = connection.createStatement();) {
-        // Create and execute a SELECT SQL statement.
-        
         //tipo == 1 quando precisar fazer um select
         if (tipo == 1) {
 
             try ( Connection connection = DriverManager.getConnection(connectionUrl);  Statement statement = connection.createStatement();) {
 
-                // Create and execute a SELECT SQL statement.
                 String selectSql = query;
                 resultSet = statement.executeQuery(selectSql);
-                
-                // Print results from select statement
+
                 while (resultSet.next()) {
-                    for(int i = 1; i <= quantColunas; i++){
+                    for (int i = 1; i <= quantColunas; i++) {
                         resultado += resultSet.getString(i) + ",";
-                        
+
                     }
-                    
+
                     resultado += "\n";
-                   
-                } 
+
+                }
                 System.out.println("Select: " + selectSql);
                 connection.close();
                 return resultado;
             } catch (SQLException e) {
                 e.printStackTrace();
-                
-                
+
             }
         } else if (tipo == 2) { //tipo == 2 quando precisar fazer insert ou update
             try ( Connection connection = DriverManager.getConnection(connectionUrl);  PreparedStatement prepsInsertProduct = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
@@ -68,24 +61,11 @@ public class BancoDados {
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-                
+
             }
         }
 
-        /*  resultSet = statement.executeQuery(query);
-               
-                while (resultSet.next()) {
-                resultado += resultSet.getString(1);
-                return resultado;
-                }
-                
-         */
         return null;
     }
 
-    /*  // Print results from select statement
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString(1));
-            } */
-    // }
 }
