@@ -4,8 +4,9 @@
  */
 package testes;
 
-import com.mycompany.sistema_de_faturamento.CaixaDaEmpresa;
-import com.mycompany.sistema_de_faturamento.Despesas;
+
+import com.mycompany.sistema_de_faturamento.Despesa;
+
 
 
 import java.sql.SQLException;
@@ -17,10 +18,11 @@ import java.sql.SQLException;
 public class TesteDespesas {
     public static void main(String[] args) throws SQLException {
         
-        Despesas despesas = new Despesas();
-        despesas.buscarDespesasBanco();
+       Despesa despesa = new Despesa();
         
-        System.out.println(despesas.aDespesa(3).getDescricao());
+        for(int i = 0; i < 15; i++){
+            despesa.addDespesaBanco("Despesa n" + i, "Teste", 16.3 * i);
+        }
     
     
     
