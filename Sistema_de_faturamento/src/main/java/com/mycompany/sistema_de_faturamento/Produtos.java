@@ -30,7 +30,7 @@ public final class Produtos {
     public void buscarProdutosBancos() throws SQLException {
         BancoDados banco = new BancoDados();
         
-        String produtosSelect = banco.banco(1, "SELECT * FROM PRODUTO", 3);
+        String produtosSelect = banco.select("SELECT * FROM PRODUTO", 3);
         String [] linhas = produtosSelect.split("\n");
         
        for (String linha : linhas) {

@@ -31,7 +31,7 @@ public class Produto {
     
         String insert = String.format("INSERT INTO PRODUTO VALUES ('%s', '%s');", descricao, valor); 
         BancoDados banco = new BancoDados();
-        banco.banco(2, insert, 0);
+        banco.insertOUpdate(insert);
     }
 
     

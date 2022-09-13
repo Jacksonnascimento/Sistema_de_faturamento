@@ -32,7 +32,7 @@ public class CaixaDaEmpresa {
    }
    public void buscarInforBanco() throws SQLException{
        banco = new BancoDados();
-       String caixaSelect = banco.banco(1, "SELECT * FROM CAIXA_EMPRESA WHERE ID = 1", 2);
+       String caixaSelect = banco.select("SELECT * FROM CAIXA_EMPRESA WHERE ID = 1", 2);
        String [] colunas = caixaSelect.split(",");
        
        setId(Integer.parseInt(colunas[0]));
@@ -41,7 +41,7 @@ public class CaixaDaEmpresa {
        
       
        banco = new BancoDados();
-       String  selectValor = banco.banco(1, "SELECT SUM(VALOR) FROM DESPESA", 1);
+       String  selectValor = banco.select("SELECT SUM(VALOR) FROM DESPESA", 1);
        String [] coluna = selectValor.split(",");
        
        

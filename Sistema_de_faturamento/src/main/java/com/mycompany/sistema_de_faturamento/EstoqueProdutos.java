@@ -25,7 +25,7 @@ public class EstoqueProdutos {
     
     public void buscarEstoquebanco() throws SQLException{
         BancoDados banco = new BancoDados();
-        String estoqueSelect = banco.banco(1, "SELECT * FROM ESTOQUE", 3);
+        String estoqueSelect = banco.select("SELECT * FROM ESTOQUE", 3);
         String [] linhas = estoqueSelect.split("\n");
         
         

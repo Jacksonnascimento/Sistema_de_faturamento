@@ -28,7 +28,7 @@ public class Cliente {
     public void addClienteBanco(String nome, String cpf, String email) throws SQLException{
         BancoDados banco = new BancoDados();
         String insert = String.format("INSERT INTO CLIENTE VALUES ('%s', '%s', '%s')", nome, cpf, email);
-        banco.banco(2, insert, 0);
+        banco.insertOUpdate(insert);
     }
     
     

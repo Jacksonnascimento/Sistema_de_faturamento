@@ -16,9 +16,7 @@ import java.sql.Statement;
  * @author jacks
  */
 public class BancoDados {
-
-    public String banco(int tipo, String query, int quantColunas) throws SQLException {
-        String resultado = "";
+    
         String connectionUrl
                 = "jdbc:sqlserver://localhost:1433;"
                 + "database=Sistema_Faturamento;"
@@ -29,11 +27,10 @@ public class BancoDados {
                 + "loginTimeout=30;";
 
         ResultSet resultSet = null;
-
-        //tipo == 1 quando precisar fazer um select
-        if (tipo == 1) {
-
-            try ( Connection connection = DriverManager.getConnection(connectionUrl);  Statement statement = connection.createStatement();) {
+    
+    public String select(String query, int quantColunas){
+        String resultado = "";
+         try ( Connection connection = DriverManager.getConnection(connectionUrl);  Statement statement = connection.createStatement();) {
 
                 String selectSql = query;
                 resultSet = statement.executeQuery(selectSql);
@@ -49,23 +46,37 @@ public class BancoDados {
                 }
                 System.out.println("Select: " + selectSql);
                 connection.close();
+                
                 return resultado;
             } catch (SQLException e) {
-                e.printStackTrace();
-
             }
-        } else if (tipo == 2) { //tipo == 2 quando precisar fazer insert ou update
+         
+         return null;
+    }
+    
+    
+    public void insertOUpdate(String query){
+        
             try ( Connection connection = DriverManager.getConnection(connectionUrl);  PreparedStatement prepsInsertProduct = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
                 prepsInsertProduct.execute();
                 System.out.println("Query: " + query);
+                log(query);
                 connection.close();
             } catch (SQLException e) {
-                e.printStackTrace();
-
             }
         }
-
-        return null;
-    }
+    
+    
+    public void log(String query){
+                query = query.replaceAll("'", " ´ ");
+                query = String.format("INSERT INTO LOG_OPERACOES VALUES ('%s')",  query );
+        
+            try ( Connection connection = DriverManager.getConnection(connectionUrl);  PreparedStatement prepsInsertProduct = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
+                prepsInsertProduct.execute();    
+                connection.close();
+            } catch (SQLException e) {
+            }
+        }
+    
 
 }

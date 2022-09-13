@@ -30,7 +30,7 @@ public class Despesa {
         String insert = String.format("INSERT INTO DESPESA VALUES ('%s', '%s', '%s');", descricao, tipo, valor);
         
        BancoDados banco = new BancoDados();
-       banco.banco(2, insert, 0);
+       banco.insertOUpdate(insert);
         
     }
     

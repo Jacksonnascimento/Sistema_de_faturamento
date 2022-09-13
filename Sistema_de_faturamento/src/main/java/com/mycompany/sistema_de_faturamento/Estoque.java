@@ -40,7 +40,7 @@ public class Estoque {
         BancoDados banco = new BancoDados();
         String insert  = String.format("INSERT INTO ESTOQUE VALUES (%s, %s)", idProduto, quantidade);
         
-        banco.banco(2, insert, 0);
+        banco.insertOUpdate(insert);
     }
 
     /**

@@ -93,7 +93,7 @@ public class Login {
 
         BancoDados banco = new BancoDados();
 
-        banco.banco(2, insert, 0);
+        banco.insertOUpdate(insert);
     }
 
     /**
@@ -114,7 +114,7 @@ public class Login {
     public boolean buscarInfoBanco(String usr, String senha) throws SQLException {
         String select = String.format("SELECT * FROM USUARIO WHERE NOME_USUARIO = '%s' AND SENHA='%s'", usr, senha);
         BancoDados banco = new BancoDados();
-        String resultado = banco.banco(1, select, 6);
+        String resultado = banco.select(select, 6);
        
         if (!"".equals(resultado)) {
 

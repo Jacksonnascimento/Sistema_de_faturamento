@@ -29,7 +29,7 @@ public class Despesas {
         
         BancoDados banco = new BancoDados();
         
-        String despesasSelect = banco.banco(1, "SELECT * FROM DESPESA", 4);
+        String despesasSelect = banco.select("SELECT * FROM DESPESA", 4);
         String [] linhas = despesasSelect.split("\n");
         
        for (String linha : linhas) {
