@@ -60,7 +60,6 @@ public class BancoDados {
             try ( Connection connection = DriverManager.getConnection(connectionUrl);  PreparedStatement prepsInsertProduct = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
                 prepsInsertProduct.execute();
                 System.out.println("Query: " + query);
-                log(query);
                 connection.close();
             } catch (SQLException e) {
             }

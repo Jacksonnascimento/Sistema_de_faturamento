@@ -36,7 +36,7 @@ public class ListaDeDespesas extends javax.swing.JFrame {
         try {
             despesas.buscarDespesasBanco();
             for(Despesa despesa : despesas.getDespesas()){
-                String valor = "R$ " + String.format("%.2f", despesa.getValor());
+                String valor = String.format("%.2f", despesa.getValor());
                 model.addElement(String.format("ID: %s    | DESCRIÇÃO: %s  |TIPO: %s      | VALOR: R$%s  ", despesa.getId(), despesa.getDescricao(), despesa.getTipo(), valor));
             }
             //model.addElement(String.format("%s    | s%  | s%     | s% ", ));
