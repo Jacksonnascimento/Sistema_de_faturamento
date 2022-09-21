@@ -27,6 +27,10 @@ public final class Produtos {
 
     }
     
+    public void addObeProduto(Produto produto){
+        produtos.add(produto);
+    }
+    
     public void buscarProdutosBancos() throws SQLException {
         BancoDados banco = new BancoDados();
         

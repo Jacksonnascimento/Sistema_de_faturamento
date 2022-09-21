@@ -25,6 +25,14 @@ public class Cliente {
         this.setEmail(email);
     }
     
+    public void buscarCliente (String cpf){
+        BancoDados banco = new BancoDados();
+        String select = String.format("SELECT * FROM CLIENTE WHERE CPF = '%s'", cpf);
+        select = banco.select(select, 4);
+        String [] colunas = select.split(",");
+        addCliente(Integer.parseInt(colunas[0]), colunas[1], colunas[2], colunas[3]);
+       
+    }
     public void addClienteBanco(String nome, String cpf, String email) throws SQLException{
         BancoDados banco = new BancoDados();
         String insert = String.format("INSERT INTO CLIENTE VALUES ('%s', '%s', '%s')", nome, cpf, email);
@@ -87,6 +95,10 @@ public class Cliente {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void buscarCliente(int WIDTH) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

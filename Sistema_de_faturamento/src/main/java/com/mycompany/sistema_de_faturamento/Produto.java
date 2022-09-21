@@ -27,6 +27,14 @@ public class Produto {
         this.valor = valor;
     }
     
+    public void buscarProdutoBanco(int id){
+        BancoDados banco = new BancoDados();
+        String select = String.format("SELECT * FROM PRODUTO WHERE ID =  '%s'", id);
+        select = banco.select(select, 3);
+        String [] colunas = select.split(",");
+        addProduto(Integer.parseInt(colunas[0]), colunas[1], Double.parseDouble(colunas[2]));
+    }
+    
     public void addProdutoBanco(String descricao, double valor) throws SQLException{
     
         String insert = String.format("INSERT INTO PRODUTO VALUES ('%s', '%s');", descricao, valor); 

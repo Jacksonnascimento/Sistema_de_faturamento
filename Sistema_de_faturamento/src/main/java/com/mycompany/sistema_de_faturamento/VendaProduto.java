@@ -4,39 +4,37 @@
  */
 package com.mycompany.sistema_de_faturamento;
 
+import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
+
 /**
  *
  * @author Jackson
  */
 public class VendaProduto {
-    private int idVenda;
+    private int id;
+    private int idCliente;
     private int idProduto;
-    private double valorDaVenda;
-    private double valorPago;
-    private double troco = 0;
+    private String cpf;
     
     
-    //calcular o troco
-    public double troco(){
-        if(valorPago > valorDaVenda){
-          troco =  valorPago - valorDaVenda;
-        }
-        
-        return troco;
+  public void addVendaProdutoBanco(int idCliente, int idProduto){
+      BancoDados banco = new BancoDados();
+      banco.insertOUpdate(String.format("INSERT INTO  COMPRA (ID_CLIENTE, ID_PRODUTO) VALUES(%s, %s)", idCliente, idProduto));
+  }
+      
+
+    /**
+     * @return the idCliente
+     */
+    public int getIdCliente() {
+        return idCliente;
     }
 
     /**
-     * @return the idVenda
+     * @param idCliente the idCliente to set
      */
-    public int getIdVenda() {
-        return idVenda;
-    }
-
-    /**
-     * @param idVenda the idVenda to set
-     */
-    public void setIdVenda(int idVenda) {
-        this.idVenda = idVenda;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     /**
@@ -53,48 +51,8 @@ public class VendaProduto {
         this.idProduto = idProduto;
     }
 
-    /**
-     * @return the valorDaVenda
-     */
-    public double getValorDaVenda() {
-        return valorDaVenda;
-    }
 
-    /**
-     * @param valorDaVenda the valorDaVenda to set
-     */
-    public void setValorDaVenda(double valorDaVenda) {
-        this.valorDaVenda = valorDaVenda;
-    }
 
-    /**
-     * @return the valorPago
-     */
-    public double getValorPago() {
-        return valorPago;
-    }
-
-    /**
-     * @param valorPago the valorPago to set
-     */
-    public void setValorPago(double valorPago) {
-        this.valorPago = valorPago;
-    }
-
-    /**
-     * @return the troco
-     */
-    public double getTroco() {
-        return troco;
-    }
-
-    /**
-     * @param troco the troco to set
-     */
-    public void setTroco(double troco) {
-        this.troco = troco;
-    }
-    
     
     
 }

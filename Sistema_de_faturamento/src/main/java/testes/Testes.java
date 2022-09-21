@@ -4,6 +4,7 @@
  */
 package testes;
 
+import com.mycompany.sistema_de_faturamento.Cliente;
 import com.mycompany.sistema_de_faturamento.Estoque;
 import com.mycompany.sistema_de_faturamento.EstoqueProdutos;
 import java.sql.SQLException;
@@ -14,13 +15,12 @@ import java.sql.SQLException;
  */
 public class Testes {
     public static void main(String[] args) throws SQLException {
-        EstoqueProdutos estoqueProduto = new EstoqueProdutos();
-        estoqueProduto.buscarEstoquebanco();
+        Cliente cliente = new Cliente();
+        cliente.buscarCliente("123456") ;
         
-        for(Estoque estoque : estoqueProduto.getEstoques()){
-            System.out.println(estoque.getId() + " Quantidade: " + estoque.getQuantidade());
-             
-        }
+            System.out.println(cliente.getNome());
+        
+        
         
     }
 }
