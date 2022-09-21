@@ -9,6 +9,7 @@ import com.mycompany.sistema_de_faturamento.Produto;
 import com.mycompany.sistema_de_faturamento.Produtos;
 import com.mycompany.sistema_de_faturamento.VendaProduto;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,13 +23,16 @@ public class TelaVendas extends javax.swing.JFrame {
     double valorTotalCompra = 0;
     Cliente cliente;
     
+    
+    
     /**
      * Creates new form TelaVendas
      */
     public TelaVendas() {
         initComponents();
-        
+       
     }
+   
     
     
 
@@ -227,7 +231,7 @@ public class TelaVendas extends javax.swing.JFrame {
         produto = new Produto();
         produto.buscarProdutoBanco(Integer.parseInt(id.getText()));
         
-        String valor = "R$" + produto.getValor();
+        String valor = "R$ " + String.format("%.2f",produto.getValor());
         valorDoProduto.setText(valor);
         descricao.setText(produto.getDscricao());
     }//GEN-LAST:event_idActionPerformed
@@ -236,7 +240,7 @@ public class TelaVendas extends javax.swing.JFrame {
         produtos.addObeProduto(produto);
         modelDes.addElement(produto.getDscricao());
         System.out.println(produto.getDscricao());
-        modelValor.addElement(produto.getValor());
+        modelValor.addElement("R$ " + String.format("%.2f",produto.getValor()));
         desList.setModel(modelDes);
         valorLista.setModel(modelValor);
         valorTotalCompra += produto.getValor();
@@ -245,6 +249,7 @@ public class TelaVendas extends javax.swing.JFrame {
         id.setText(null);
         valorDoProduto.setText(null);
         descricao.setText(null);
+        cpfdoCliente.setText(null);
         
     
        
