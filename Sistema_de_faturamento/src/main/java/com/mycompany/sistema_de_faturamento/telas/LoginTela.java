@@ -25,6 +25,25 @@ public class LoginTela extends javax.swing.JFrame {
         initComponents();
         logar.criarBuscarUsuariosBanco();
     }
+    
+    public void logar(){
+        String usr = usuario.getText();
+        String senhaUSr = this.senha.getText();
+       
+        try {
+            if (logar.validarUsrSenha(usr, senhaUSr)) {
+                JOptionPane.showMessageDialog(null, "Seja bem-vindo ao sistema de faturamento!");
+                setVisible(false);
+                TelaOpcoes telaOpcoes = new TelaOpcoes();
+                telaOpcoes.setVisible(rootPaneCheckingEnabled);
+            } else {
+                usuario.setText(null);
+                this.senha.setText(null);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginTela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -114,27 +133,12 @@ public class LoginTela extends javax.swing.JFrame {
     }//GEN-LAST:event_usuarioActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        String usr = usuario.getText();
-        String senha = this.senha.getText();
-       
-        try {
-            if (logar.validarUsrSenha(usr, senha)) {
-                JOptionPane.showMessageDialog(null, "Seja bem-vindo ao sistema de faturamento!");
-                setVisible(false);
-                TelaOpcoes telaOpcoes = new TelaOpcoes();
-                telaOpcoes.setVisible(rootPaneCheckingEnabled);
-            } else {
-                usuario.setText(null);
-                this.senha.setText(null);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginTela.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        logar();
         
     }//GEN-LAST:event_loginActionPerformed
 
     private void senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaActionPerformed
-        // TODO add your handling code here:
+        logar();
     }//GEN-LAST:event_senhaActionPerformed
 
     /**
