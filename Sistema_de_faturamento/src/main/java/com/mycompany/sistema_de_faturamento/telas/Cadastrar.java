@@ -22,6 +22,23 @@ public class Cadastrar extends javax.swing.JFrame {
     public Cadastrar() {
         initComponents();
     }
+    
+    public void salvarInfor(){
+        Login login = new Login();
+
+        if (nome.getText() != " " && senha.getText() != " ") {
+            try {
+                login.criarLoginBanco(nome.getText(), user.getText(), "USR", senha.getText(), email.getText());
+                nome.setText(null);
+                user.setText(null);
+                senha.setText(null);
+                email.setText(null);
+            } catch (SQLException ex) {
+                Logger.getLogger(Cadastrar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -151,25 +168,12 @@ public class Cadastrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
-        Login login = new Login();
-
-        if (nome.getText() != " " && senha.getText() != " ") {
-            try {
-                login.criarLoginBanco(nome.getText(), user.getText(), "USR", senha.getText(), email.getText());
-                nome.setText(null);
-                user.setText(null);
-                senha.setText(null);
-                email.setText(null);
-            } catch (SQLException ex) {
-                Logger.getLogger(Cadastrar.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
+        salvarInfor();
 
     }//GEN-LAST:event_salvarActionPerformed
 
     private void senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaActionPerformed
-        // TODO add your handling code here:
+        salvarInfor();
     }//GEN-LAST:event_senhaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
