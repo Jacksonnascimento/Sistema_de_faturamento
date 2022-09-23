@@ -16,13 +16,14 @@ import javax.swing.JOptionPane;
  * @author Jackson
  */
 public class LoginTela extends javax.swing.JFrame {
-
+    Login logar = new Login();
+        
     /**
      * Creates new form Login
      */
     public LoginTela() {
         initComponents();
-
+        logar.criarBuscarUsuariosBanco();
     }
 
     /**
@@ -113,24 +114,23 @@ public class LoginTela extends javax.swing.JFrame {
     }//GEN-LAST:event_usuarioActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-
         String usr = usuario.getText();
         String senha = this.senha.getText();
-        Login login = new Login();
+       
         try {
-            if (login.buscarInfoBanco(usr, senha)) {
+            if (logar.validarUsrSenha(usr, senha)) {
                 JOptionPane.showMessageDialog(null, "Seja bem-vindo ao sistema de faturamento!");
                 setVisible(false);
                 TelaOpcoes telaOpcoes = new TelaOpcoes();
                 telaOpcoes.setVisible(rootPaneCheckingEnabled);
             } else {
-                JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto");
                 usuario.setText(null);
                 this.senha.setText(null);
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginTela.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }//GEN-LAST:event_loginActionPerformed
 
     private void senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaActionPerformed

@@ -6,6 +6,8 @@ package com.mycompany.sistema_de_faturamento.login;
 
 import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,7 +21,7 @@ public class Login {
     private String senha;
     private String email;
     private String nomeUsuario;
-
+    private ArrayList<Login> usuarios = new ArrayList();
     /**
      * @return the nome
      */
@@ -109,27 +111,46 @@ public class Login {
     public void setId(int id) {
         this.id = id;
     }
-
-    //metodo para buscar as informações no banco
-    public boolean buscarInfoBanco(String usr, String senha) throws SQLException {
-        String select = String.format("SELECT * FROM USUARIO WHERE NOME_USUARIO = '%s' AND SENHA='%s'", usr, senha);
+    
+    public void criarBuscarUsuariosBanco(){
+        String select = "SELECT * FROM USUARIO";
         BancoDados banco = new BancoDados();
         String resultado = banco.select(select, 6);
-       
-        if (!"".equals(resultado)) {
-
-            String[] colunas = resultado.split(",");
-            
-            //int id, String nome, String nomeUsuario, String tipo, String senha, String email 
-            criarLogin(Integer.parseInt(colunas[0]), colunas[1], colunas[2],
+        
+        String [] linhas = resultado.split("\n");
+        
+        
+        for (String linha : linhas){
+            String [] colunas = linha.split(",");
+            Login login = new Login();
+            login.criarLogin(Integer.parseInt(colunas[0]), colunas[1], colunas[2],
                     colunas[3], colunas[4], colunas[5]);
-
-            return true;
-        } else {
-            return false;
+            usuarios.add(login);
         }
-
     }
+
+    //metodo para buscar as informações no banco
+    public boolean validarUsrSenha(String usr, String senha) throws SQLException {
+        
+        for(Login usuario : usuarios){
+            if(usr.equals(usuario.nomeUsuario))
+            {
+                if(senha.equals(usuario.getSenha()))
+                {
+                    return true;
+                } else
+                {
+                    JOptionPane.showMessageDialog(null, "Senha incorreta!");
+                    return false;
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!");
+                return false;
+            }
+     }
+       return false;     
+    }
+    
 
     /**
      * @return the nomeUsuario
