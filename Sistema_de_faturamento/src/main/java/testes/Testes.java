@@ -9,17 +9,26 @@ import com.mycompany.sistema_de_faturamento.Estoque;
 import com.mycompany.sistema_de_faturamento.EstoqueProdutos;
 import java.sql.SQLException;
 
+import java.time.LocalDateTime;
+import java.util.Random;
+
 /**
  *
  * @author Jackson
  */
 public class Testes {
     public static void main(String[] args) throws SQLException {
-        Cliente cliente = new Cliente();
-        cliente.buscarCliente("123456") ;
-        
-            System.out.println(cliente.getNome());
-        
+        Random random = new Random();
+        int idCliente = 5;
+      String codCompra = 
+                String.format("%s\n:%s\n:%s\n:%s\n:%s", 
+                        LocalDateTime.now().getYear() 
+                        ,idCliente, 
+                        LocalDateTime.now().getDayOfYear(), 
+                        LocalDateTime.now().getHour(),
+                        random.nextInt()
+                        );
+        System.out.println(codCompra);
         
         
     }

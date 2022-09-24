@@ -5,6 +5,8 @@
 package com.mycompany.sistema_de_faturamento;
 
 import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
+import java.time.LocalDateTime;
+import java.util.Random;
 
 /**
  *
@@ -16,6 +18,7 @@ public class VendaProduto {
     private int idProduto;
     private String cpf;
     BancoDados banco;
+    private String codCompra;
     
   public void addVendaProdutoBanco(int idCliente, int idProduto){
       banco = new BancoDados();
@@ -24,9 +27,17 @@ public class VendaProduto {
     
     public void addVendasProdutosBanco(int idCliente, Produtos produtos){
         String insert = "";
-        
+        Random random = new Random();
+        codCompra = 
+                String.format("%s:%s:%s:%s:%s", 
+                        LocalDateTime.now().getYear() 
+                        ,idCliente, 
+                        LocalDateTime.now().getDayOfYear(), 
+                        LocalDateTime.now().getHour(),
+                        random.nextInt()
+                        );
         for(Produto produto : produtos.getProdutos()){
-            insert += String.format("INSERT INTO  COMPRA (ID_CLIENTE, ID_PRODUTO, DATA_COMPRA) VALUES(%s, %s, GETDATE())\n", idCliente, produto.getId());
+            insert += String.format("INSERT INTO  COMPRA (ID_CLIENTE, ID_PRODUTO, COD_DA_COMPRA, DATA_COMPRA) VALUES(%s, %s, '%s', GETDATE())\n", idCliente, produto.getId(), codCompra);
         }
        
         banco = new BancoDados();
