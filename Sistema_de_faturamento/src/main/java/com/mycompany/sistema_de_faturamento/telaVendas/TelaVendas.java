@@ -265,7 +265,6 @@ public class TelaVendas extends javax.swing.JFrame {
     private void adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarActionPerformed
         listaComprasProduto.addProduto(produtosBanco.buscarPorID((Integer.parseInt(id.getText()))));
         modelDes.addElement(produtosBanco.buscarPorID((Integer.parseInt(id.getText()))).getDscricao());
-        System.out.println(produtosBanco.buscarPorID((Integer.parseInt(id.getText()))).getDscricao());
         modelValor.addElement("R$ " + String.format("%.2f",produtosBanco.buscarPorID((Integer.parseInt(id.getText()))).getValor()));
         desList.setModel(modelDes);
         valorLista.setModel(modelValor);
