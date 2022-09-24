@@ -58,7 +58,11 @@ public class CaixaDaEmpresa {
        this.valorDoCaixa  += valorGanho;
    }
    
-   
+   public void SomarValorganhoBanco(double valor){
+       banco = new BancoDados();
+       String update = String.format("UPDATE CAIXA_EMPRESA SET VALOR_CAIXA += %s WHERE ID = 1", valor);
+       banco.insertOUpdate(update);
+   }
     /**
      * @return the id
      */

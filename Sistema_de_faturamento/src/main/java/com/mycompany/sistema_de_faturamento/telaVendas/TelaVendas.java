@@ -4,6 +4,7 @@
  */
 package com.mycompany.sistema_de_faturamento.telaVendas;
 
+import com.mycompany.sistema_de_faturamento.CaixaDaEmpresa;
 import com.mycompany.sistema_de_faturamento.Cliente;
 import com.mycompany.sistema_de_faturamento.Produto;
 import com.mycompany.sistema_de_faturamento.Produtos;
@@ -281,7 +282,8 @@ public class TelaVendas extends javax.swing.JFrame {
             VendaProduto venda = new VendaProduto();
             venda.addVendasProdutosBanco(cliente.buscarCliente(cpfdoCliente.getText()).getId(), listaComprasProduto);
         } 
-        
+        CaixaDaEmpresa caixa = new CaixaDaEmpresa();
+        caixa.SomarValorganhoBanco(valorTotalCompra);
         cpfdoCliente.setText(null);
         
         
