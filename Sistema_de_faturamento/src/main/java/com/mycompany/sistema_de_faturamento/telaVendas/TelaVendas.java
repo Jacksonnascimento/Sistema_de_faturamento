@@ -279,8 +279,7 @@ public class TelaVendas extends javax.swing.JFrame {
     private void compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compraActionPerformed
         if(cliente.buscarCliente(cpfdoCliente.getText()) != null){
             VendaProduto venda = new VendaProduto();
-            System.out.println();
-            venda.addVendasProdutosBanco(cliente.buscarCliente(cpfdoCliente.getText()).getId(), produtosBanco);
+            venda.addVendasProdutosBanco(cliente.buscarCliente(cpfdoCliente.getText()).getId(), listaComprasProduto);
         } 
         
         cpfdoCliente.setText(null);

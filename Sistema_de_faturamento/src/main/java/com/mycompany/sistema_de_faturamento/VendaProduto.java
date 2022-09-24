@@ -24,8 +24,6 @@ public class VendaProduto {
     
     public void addVendasProdutosBanco(int idCliente, Produtos produtos){
         String insert = "";
-        System.out.println(idCliente);
-        System.out.println(this.idCliente);
         
         for(Produto produto : produtos.getProdutos()){
             insert += String.format("INSERT INTO  COMPRA (ID_CLIENTE, ID_PRODUTO) VALUES(%s, %s)\n", idCliente, produto.getId());
