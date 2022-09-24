@@ -15,13 +15,25 @@ public class VendaProduto {
     private int idCliente;
     private int idProduto;
     private String cpf;
-    
+    BancoDados banco;
     
   public void addVendaProdutoBanco(int idCliente, int idProduto){
-      BancoDados banco = new BancoDados();
+      banco = new BancoDados();
       banco.insertOUpdate(String.format("INSERT INTO  COMPRA (ID_CLIENTE, ID_PRODUTO) VALUES(%s, %s)", idCliente, idProduto));
   }
-      
+    
+    public void addVendasProdutosBanco(int idCliente, Produtos produtos){
+        String insert = "";
+        System.out.println(idCliente);
+        System.out.println(this.idCliente);
+        
+        for(Produto produto : produtos.getProdutos()){
+            insert += String.format("INSERT INTO  COMPRA (ID_CLIENTE, ID_PRODUTO) VALUES(%s, %s)\n", idCliente, produto.getId());
+        }
+       
+        banco = new BancoDados();
+        banco.insertOUpdate(insert);
+    }
 
     /**
      * @return the idCliente

@@ -37,7 +37,7 @@ public class Cliente {
         
         for(String linha : linhas){
             Cliente cliente = new Cliente();
-            String [] colunas = select.split(",");
+            String [] colunas = linha.split(",");
             cliente.addCliente(Integer.parseInt(colunas[0]), colunas[1], colunas[2], colunas[3]);      
             clientes.add(cliente);
         }
@@ -47,6 +47,7 @@ public class Cliente {
         for(Cliente cli : clientes){
             if(cpf.equals(cli.getCpf())){
                 return cli;
+                
             }
         }
         JOptionPane.showMessageDialog(null, "Informe um CPF válido!");

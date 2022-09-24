@@ -44,7 +44,7 @@ public class BancoDados {
                     resultado += "\n";
 
                 }
-                System.out.println("Select: " + selectSql);
+               // System.out.println("Select: " + selectSql);
                 connection.close();
                 
                 return resultado;
@@ -59,7 +59,7 @@ public class BancoDados {
         
             try ( Connection connection = DriverManager.getConnection(connectionUrl);  PreparedStatement prepsInsertProduct = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
                 prepsInsertProduct.execute();
-                System.out.println("Query: " + query);
+               // System.out.println("Query: " + query);
                 connection.close();
             } catch (SQLException e) {
             }
@@ -68,7 +68,7 @@ public class BancoDados {
     
     public void log(String query){
                 query = query.replaceAll("'", " ´ ");
-                query = String.format("INSERT INTO LOG_OPERACOES VALUES ('%s')",  query );
+               query = String.format("INSERT INTO LOG_OPERACOES VALUES ('%s')",  query );
         
             try ( Connection connection = DriverManager.getConnection(connectionUrl);  PreparedStatement prepsInsertProduct = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
                 prepsInsertProduct.execute();    

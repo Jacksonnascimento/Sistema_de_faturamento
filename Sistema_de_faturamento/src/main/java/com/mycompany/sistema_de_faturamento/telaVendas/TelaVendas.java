@@ -26,7 +26,6 @@ public class TelaVendas extends javax.swing.JFrame {
     DefaultListModel modelValor = new DefaultListModel();
     double valorTotalCompra = 0;
     Cliente cliente = new Cliente();
-    int idCliente;
     
     
     
@@ -234,12 +233,12 @@ public class TelaVendas extends javax.swing.JFrame {
 
     private void cpfdoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfdoClienteActionPerformed
         
-        if(cliente.buscarCliente(cpfdoCliente.getText()) != null){
+       if(cliente.buscarCliente(cpfdoCliente.getText()) != null){
             nomeDoCliente.setText(cliente.buscarCliente(cpfdoCliente.getText()).getNome());
         } else{
             cpfdoCliente.setText(null);
+            nomeDoCliente.setText(null);
         }
-       
         
     }//GEN-LAST:event_cpfdoClienteActionPerformed
 
@@ -279,11 +278,9 @@ public class TelaVendas extends javax.swing.JFrame {
 
     private void compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compraActionPerformed
         if(cliente.buscarCliente(cpfdoCliente.getText()) != null){
-            
-            for (Produto pro : listaComprasProduto.getProdutos()){
-                VendaProduto venda = new VendaProduto();
-                venda.addVendaProdutoBanco(cliente.buscarCliente(cpfdoCliente.getText()).getId(), pro.getId());
-            }
+            VendaProduto venda = new VendaProduto();
+            System.out.println();
+            venda.addVendasProdutosBanco(cliente.buscarCliente(cpfdoCliente.getText()).getId(), produtosBanco);
         } 
         
         cpfdoCliente.setText(null);
