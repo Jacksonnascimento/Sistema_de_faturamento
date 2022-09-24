@@ -143,11 +143,9 @@ public class Login {
                     JOptionPane.showMessageDialog(null, "Senha incorreta!");
                     return false;
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!");
-                return false;
-            }
+            } 
      }
+       JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!");
        return false;     
     }
     

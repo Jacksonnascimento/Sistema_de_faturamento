@@ -9,6 +9,9 @@ import com.mycompany.sistema_de_faturamento.Produto;
 import com.mycompany.sistema_de_faturamento.Produtos;
 import com.mycompany.sistema_de_faturamento.VendaProduto;
 import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -17,20 +20,23 @@ import javax.swing.JOptionPane;
  * @author jacks
  */
 public class TelaVendas extends javax.swing.JFrame {
-    Produto produto;
-    Produtos produtos = new Produtos();
+    Produtos produtosBanco = new Produtos();
+    Produtos listaComprasProduto = new Produtos();
     DefaultListModel modelDes = new DefaultListModel();
     DefaultListModel modelValor = new DefaultListModel();
     double valorTotalCompra = 0;
-    Cliente cliente;
+    Cliente cliente = new Cliente();
+    int idCliente;
     
     
     
     /**
      * Creates new form TelaVendas
      */
-    public TelaVendas() {
+    public TelaVendas() throws SQLException {
         initComponents();
+        produtosBanco.buscarProdutosBancos();
+        cliente.buscarClientesBanco();
        
     }
    
@@ -227,45 +233,62 @@ public class TelaVendas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cpfdoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfdoClienteActionPerformed
-        cliente = new Cliente();
-        cliente.buscarCliente(cpfdoCliente.getText());
-        nomeDoCliente.setText(cliente.getNome());
+        
+        if(cliente.buscarCliente(cpfdoCliente.getText()) != null){
+            nomeDoCliente.setText(cliente.buscarCliente(cpfdoCliente.getText()).getNome());
+        } else{
+            cpfdoCliente.setText(null);
+        }
+       
+        
     }//GEN-LAST:event_cpfdoClienteActionPerformed
 
-    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
-        produto = new Produto();
-        produto.buscarProdutoBanco(Integer.parseInt(id.getText()));
-        
-        String valor = "R$ " + String.format("%.2f",produto.getValor());
-        valorDoProduto.setText(valor);
-        descricao.setText(produto.getDscricao());
-    }//GEN-LAST:event_idActionPerformed
-
-    private void adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarActionPerformed
-        produtos.addObeProduto(produto);
-        modelDes.addElement(produto.getDscricao());
-        System.out.println(produto.getDscricao());
-        modelValor.addElement("R$ " + String.format("%.2f",produto.getValor()));
-        desList.setModel(modelDes);
-        valorLista.setModel(modelValor);
-        valorTotalCompra += produto.getValor();
-        String valorSring = "R$ " + String.format("%.2f",valorTotalCompra);
-        valorTotal.setText(valorSring);
+    
+    private void zerarInforProdu(){
         id.setText(null);
         valorDoProduto.setText(null);
         descricao.setText(null);
         
+    }
+    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+    
+        if(produtosBanco.buscarPorID((Integer.parseInt(id.getText()))) != null){
+            String valor = String.format("R$ %.2f",produtosBanco.buscarPorID((Integer.parseInt(id.getText()))).getValor());
+            valorDoProduto.setText(valor);
+            descricao.setText(produtosBanco.buscarPorID((Integer.parseInt(id.getText()))).getDscricao());
+        } else {
+            zerarInforProdu();
+        }
+        
+    }//GEN-LAST:event_idActionPerformed
+
+    private void adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarActionPerformed
+        listaComprasProduto.addProduto(produtosBanco.buscarPorID((Integer.parseInt(id.getText()))));
+        modelDes.addElement(produtosBanco.buscarPorID((Integer.parseInt(id.getText()))).getDscricao());
+        System.out.println(produtosBanco.buscarPorID((Integer.parseInt(id.getText()))).getDscricao());
+        modelValor.addElement("R$ " + String.format("%.2f",produtosBanco.buscarPorID((Integer.parseInt(id.getText()))).getValor()));
+        desList.setModel(modelDes);
+        valorLista.setModel(modelValor);
+        valorTotalCompra += produtosBanco.buscarPorID((Integer.parseInt(id.getText()))).getValor();
+        String valorSring = "R$ " + String.format("%.2f",valorTotalCompra);
+        valorTotal.setText(valorSring);
+        zerarInforProdu();
         
   
          
     }//GEN-LAST:event_adicionarActionPerformed
 
     private void compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compraActionPerformed
-        for (Produto pro : produtos.getProdutos()){
-            VendaProduto venda = new VendaProduto();
-            venda.addVendaProdutoBanco(cliente.getId(), pro.getId());
-        }
+        if(cliente.buscarCliente(cpfdoCliente.getText()) != null){
+            
+            for (Produto pro : listaComprasProduto.getProdutos()){
+                VendaProduto venda = new VendaProduto();
+                venda.addVendaProdutoBanco(cliente.buscarCliente(cpfdoCliente.getText()).getId(), pro.getId());
+            }
+        } 
+        
         cpfdoCliente.setText(null);
+        
         
         
     }//GEN-LAST:event_compraActionPerformed
@@ -304,7 +327,11 @@ public class TelaVendas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaVendas().setVisible(true);
+                try {
+                    new TelaVendas().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(TelaVendas.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

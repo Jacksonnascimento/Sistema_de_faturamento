@@ -7,6 +7,7 @@ package com.mycompany.sistema_de_faturamento;
 import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -27,7 +28,7 @@ public final class Produtos {
 
     }
     
-    public void addObeProduto(Produto produto){
+    public void addProduto(Produto produto){
         produtos.add(produto);
     }
     
@@ -53,14 +54,14 @@ public final class Produtos {
     }
 
     //buscar o produto pelo id
-    public Produto oProduto(int id) {
+    public Produto buscarPorID(int id) {
         for (Produto pro : produtos) {
             if (pro.getId() == id) {
                 return pro;
             }
         }
-        System.out.println("Não existe produto com esse id. O sistema será fechado");
-        System.exit(0);
+        
+        JOptionPane.showMessageDialog(null, "Não existe produto com esse id.");
         return null;
 
     }
