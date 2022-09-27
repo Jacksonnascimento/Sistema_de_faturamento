@@ -7,6 +7,7 @@ package com.mycompany.sistema_de_faturamento;
 import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,16 +39,23 @@ public class EstoqueProdutos {
        
     }
     
-     //retorna despesa pelo id
-    public Estoque oProdutoQuant(int id){
+     //retorna qProdu pelo id
+    public Estoque oProdutoQuant(int idProduto) throws SQLException{
         for (Estoque esto : estoques){
-            if(esto.getId() == id){
+            if(esto.getIdProduto()== idProduto){
                 return esto;
             }
-        }
-        System.out.println("Não existe despesa com esse ID. O sistema será fechado." );
-        System.exit(0);
+        } 
+        
+         EstoqueProdutos pro =  new EstoqueProdutos();
+         
+         
+           Estoque estoque = new Estoque();
+           estoque = new Estoque();
+           estoque.addQuanBanco(idProduto, 0);
+
         return null;
+
     }
 
     /**

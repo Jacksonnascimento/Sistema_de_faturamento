@@ -6,16 +6,13 @@ package com.mycompany.sistema_de_faturamento.telaVendas;
 
 import com.mycompany.sistema_de_faturamento.CaixaDaEmpresa;
 import com.mycompany.sistema_de_faturamento.Cliente;
-import com.mycompany.sistema_de_faturamento.Produto;
 import com.mycompany.sistema_de_faturamento.Produtos;
 import com.mycompany.sistema_de_faturamento.VendaProduto;
-import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
 import com.mycompany.sistema_de_faturamento.telaOpcoes.TelaOpcoes;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
 
 /**
  *

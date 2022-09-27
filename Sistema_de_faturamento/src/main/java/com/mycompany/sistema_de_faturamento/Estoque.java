@@ -42,6 +42,15 @@ public class Estoque {
         
         banco.insertOUpdate(insert);
     }
+    
+    
+    public void addQuantiUpdateBanco(int idProduto, int quantidade){
+        BancoDados banco = new BancoDados();
+        String update = String.format("UPDATE ESTOQUE SET QUANTIDADE = %s WHERE ID_PRODUTO = %s", quantidade, idProduto);
+        banco.insertOUpdate(update);
+    }
+    
+    
 
     /**
      * @return the qt

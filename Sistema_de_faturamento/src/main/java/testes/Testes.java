@@ -18,17 +18,12 @@ import java.util.Random;
  */
 public class Testes {
     public static void main(String[] args) throws SQLException {
-        Random random = new Random();
-        int idCliente = 5;
-      String codCompra = 
-                String.format("%s\n:%s\n:%s\n:%s\n:%s", 
-                        LocalDateTime.now().getYear() 
-                        ,idCliente, 
-                        LocalDateTime.now().getDayOfYear(), 
-                        LocalDateTime.now().getHour(),
-                        random.nextInt()
-                        );
-        System.out.println(codCompra);
+        Estoque estoque;
+        
+        for(int i = 1; i <= 23; i++){
+            estoque = new Estoque();
+            estoque.addQuanBanco(i, 0);
+        }
         
         
     }
