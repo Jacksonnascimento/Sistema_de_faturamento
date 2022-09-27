@@ -8,6 +8,7 @@ import com.mycompany.sistema_de_faturamento.Estoque;
 import com.mycompany.sistema_de_faturamento.EstoqueProdutos;
 import com.mycompany.sistema_de_faturamento.Produto;
 import com.mycompany.sistema_de_faturamento.Produtos;
+import com.mycompany.sistema_de_faturamento.VendaProduto;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +29,11 @@ public class TelaEstoque extends javax.swing.JFrame {
         initComponents();
         produtos.buscarProdutosBancos();
         
+    }
+    
+    public void quantiVendas(){
+        VendaProduto venda = new VendaProduto();
+        quantidadeVendidas.setText(venda.quantidadeVendasProduto(codigoPro) + "");
     }
     
     public void preencherEstoque() throws SQLException{
@@ -92,6 +98,12 @@ public class TelaEstoque extends javax.swing.JFrame {
         quantidadeProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 quantidadeProdutoActionPerformed(evt);
+            }
+        });
+
+        quantidadeVendidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quantidadeVendidasActionPerformed(evt);
             }
         });
 
@@ -164,6 +176,7 @@ public class TelaEstoque extends javax.swing.JFrame {
             
             } else {
                 descricaoProduto.setText(produto.getDscricao());
+                 quantiVendas();
                 if(estoque == null){
                     preencherEstoque();
                     estoque = locarEstoque(codigoPro);
@@ -188,6 +201,10 @@ public class TelaEstoque extends javax.swing.JFrame {
         Estoque estoque = new Estoque();
         estoque.addQuantiUpdateBanco(codigoPro, Integer.parseInt(quantidadeProduto.getText()));
     }//GEN-LAST:event_quantidadeProdutoActionPerformed
+
+    private void quantidadeVendidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantidadeVendidasActionPerformed
+       
+    }//GEN-LAST:event_quantidadeVendidasActionPerformed
 
     /**
      * @param args the command line arguments

@@ -43,6 +43,16 @@ public class VendaProduto {
         banco = new BancoDados();
         banco.insertOUpdate(insert);
     }
+    
+    public int quantidadeVendasProduto(int idProduto){
+        String select = String.format("SELECT COUNT(ID_PRODUTO) FROM COMPRA WHERE ID_PRODUTO = %s", idProduto);
+        banco = new BancoDados();
+        select = banco.select(select, 1);
+        String [] coluna = select.split(",");
+        return Integer.parseInt(coluna[0]);
+        
+        
+     }
 
     /**
      * @return the idCliente
