@@ -4,6 +4,7 @@
  */
 package com.mycompany.sistema_de_faturamento.telaOpcoes;
 import com.mycompany.sistema_de_faturamento.telaClientes.CadastrarClientes;
+import com.mycompany.sistema_de_faturamento.telaVendas.TelaEstoque;
 import com.mycompany.sistema_de_faturamento.telaVendas.TelaVendas;
 import com.mycompany.sistema_de_faturamento.telas.Cadastrar;
 import com.mycompany.sistema_de_faturamento.telasCaixaDaEmpresa.InformacoesCaixaDaEmpresa;
@@ -48,6 +49,7 @@ public class TelaOpcoes extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,6 +115,13 @@ public class TelaOpcoes extends javax.swing.JFrame {
             }
         });
 
+        jButton9.setText("Estoque");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,6 +162,10 @@ public class TelaOpcoes extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addComponent(jButton9)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +190,9 @@ public class TelaOpcoes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton7)
                     .addComponent(jButton8))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton9)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         pack();
@@ -243,6 +258,19 @@ public class TelaOpcoes extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        try {
+            TelaEstoque telaestoque = new TelaEstoque();
+            telaestoque.setVisible(rootPaneCheckingEnabled);
+             setVisible(false);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaOpcoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+       
+    }//GEN-LAST:event_jButton9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -287,6 +315,7 @@ public class TelaOpcoes extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

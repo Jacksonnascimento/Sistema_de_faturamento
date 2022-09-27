@@ -37,7 +37,7 @@ public class Produto {
     
     public void addProdutoBanco(String descricao, double valor) throws SQLException{
     
-        String insert = String.format("INSERT INTO PRODUTO VALUES ('%s', '%s');", descricao, valor); 
+        String insert = String.format("INSERT INTO PRODUTO VALUES ('%s', %s);", descricao, valor); 
         BancoDados banco = new BancoDados();
         banco.insertOUpdate(insert);
         

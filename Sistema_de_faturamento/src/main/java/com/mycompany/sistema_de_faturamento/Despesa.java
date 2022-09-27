@@ -27,7 +27,7 @@ public class Despesa {
     //adicionar despesa no banco de dados
     public void addDespesaBanco(String descricao, String tipo, double valor) throws SQLException{
       
-        String insert = String.format("INSERT INTO DESPESA VALUES ('%s', '%s', '%s');", descricao, tipo, valor);
+        String insert = String.format("INSERT INTO DESPESA VALUES ('%s', '%s', %s);", descricao, tipo, valor);
         
        BancoDados banco = new BancoDados();
        banco.insertOUpdate(insert);
