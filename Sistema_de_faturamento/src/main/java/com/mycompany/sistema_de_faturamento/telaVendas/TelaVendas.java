@@ -35,6 +35,8 @@ public class TelaVendas extends javax.swing.JFrame {
         initComponents();
         produtosBanco.buscarProdutosBancos();
         cliente.buscarClientesBanco();
+        desList.setModel(modelDes);
+        valorLista.setModel(modelValor);
        
     }
    
@@ -296,6 +298,10 @@ public class TelaVendas extends javax.swing.JFrame {
         caixa.SomarValorganhoBanco(valorTotalCompra);
         cpfdoCliente.setText(null);
         
+        modelDes.clear();
+        modelValor.clear();
+        desList.setModel(modelDes);
+        valorLista.setModel(modelValor);
         
         
     }//GEN-LAST:event_compraActionPerformed
