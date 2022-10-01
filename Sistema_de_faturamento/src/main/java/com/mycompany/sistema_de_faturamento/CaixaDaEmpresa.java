@@ -32,7 +32,7 @@ public class CaixaDaEmpresa {
    }
    public void buscarInforBanco() throws SQLException{
        banco = new BancoDados();
-       String caixaSelect = banco.select("SELECT * FROM CAIXA_EMPRESA WHERE ID = 1", 2);
+       String caixaSelect = banco.select("SELECT * FROM CAIXA_EMPRESA WHERE ID = 2", 2);
        String [] colunas = caixaSelect.split(",");
        
        setId(Integer.parseInt(colunas[0]));
@@ -60,7 +60,7 @@ public class CaixaDaEmpresa {
    
    public void SomarValorganhoBanco(double valor){
        banco = new BancoDados();
-       String update = String.format("UPDATE CAIXA_EMPRESA SET VALOR_CAIXA += %s WHERE ID = 1", valor);
+       String update = String.format("UPDATE CAIXA_EMPRESA SET VALOR_CAIXA += %s WHERE ID = 2", valor);
        banco.insertOUpdate(update);
    }
     /**

@@ -13,7 +13,6 @@ import java.util.Random;
  * @author Jackson
  */
 public class VendaProduto {
-    private int id;
     private int idCliente;
     private int idProduto;
     private String cpf;
@@ -26,7 +25,7 @@ public class VendaProduto {
   }
     
     public void addVendasProdutosBanco(int idCliente, Produtos produtos){
-        String insert = "";
+        String insert;
         Random random = new Random();
         codCompra = 
                 String.format("%s:%s:%s:%s:%s", 
@@ -36,8 +35,14 @@ public class VendaProduto {
                         LocalDateTime.now().getHour(),
                         random.nextInt()
                         );
+        
+        banco = new BancoDados();
+        insert = String.format("INSERT INTO COMPRAS VALUES('%s',GETDATE(), '%s')", codCompra, idCliente);
+        banco.insertOUpdate(insert);
+        insert = "";
+        
         for(Produto produto : produtos.getProdutos()){
-            insert += String.format("INSERT INTO  COMPRA (ID_CLIENTE, ID_PRODUTO, COD_DA_COMPRA, DATA_COMPRA) VALUES(%s, %s, '%s', GETDATE())\n", idCliente, produto.getId(), codCompra);
+            insert += String.format("INSERT INTO COMPRA_CLIENTE (COD_DA_COMPRA, ID_CLIENTE, ID_PRODUTO) VALUES('%s', %s, %s)\n", codCompra, idCliente, produto.getId());
         }
        
         banco = new BancoDados();

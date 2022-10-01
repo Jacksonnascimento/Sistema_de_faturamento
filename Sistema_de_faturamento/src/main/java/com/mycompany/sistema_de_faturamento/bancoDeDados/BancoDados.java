@@ -56,7 +56,6 @@ public class BancoDados {
     
     
     public void insertOUpdate(String query){
-        
             try ( Connection connection = DriverManager.getConnection(connectionUrl);  PreparedStatement prepsInsertProduct = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
                 prepsInsertProduct.execute();
                System.out.println(query);

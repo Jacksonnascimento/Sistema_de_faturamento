@@ -21,7 +21,7 @@ public class Cliente {
     private ArrayList<Cliente> clientes = new ArrayList();
 
     
-    public void addCliente(int id, String nome, String cpf, String email){
+    public void addCliente(int id, String nome,  String email, String cpf ){
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -54,9 +54,9 @@ public class Cliente {
         return null;
         
     }
-    public void addClienteBanco(String nome, String cpf, String email) throws SQLException{
+    public void addClienteBanco(String nome, String email, String cpf) throws SQLException{
         BancoDados banco = new BancoDados();
-        String insert = String.format("INSERT INTO CLIENTE VALUES ('%s', '%s', '%s')", nome, cpf, email);
+        String insert = String.format("INSERT INTO CLIENTE VALUES ('%s', '%s', '%s')", nome, email, cpf);
         banco.insertOUpdate(insert);
     }
     
