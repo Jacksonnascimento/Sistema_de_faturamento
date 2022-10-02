@@ -129,7 +129,7 @@ public class CadastrarClientes extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Cliente cliente = new Cliente();
         try {
-            cliente.addClienteBanco(nome.getText(), cpf.getText(), email.getText());
+            cliente.addClienteBanco(nome.getText(), email.getText(), cpf.getText());
             nome.setText(null);
             cpf.setText(null);
             email.setText(null);
