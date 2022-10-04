@@ -298,9 +298,10 @@ public class TelaVendas extends javax.swing.JFrame {
         VendaProduto venda = new VendaProduto();
         if(cliente.buscarCliente(cpfdoCliente.getText()) != null){
             venda.addVendasProdutosBanco(cliente.buscarCliente(cpfdoCliente.getText()).getId(), listaComprasProduto);
+            CaixaDaEmpresa caixa = new CaixaDaEmpresa();
+            caixa.SomarValorganhoBanco(valorTotalCompra);
         } 
-        CaixaDaEmpresa caixa = new CaixaDaEmpresa();
-        caixa.SomarValorganhoBanco(valorTotalCompra);
+        
         
         cpfdoCliente.setText(null);
         
