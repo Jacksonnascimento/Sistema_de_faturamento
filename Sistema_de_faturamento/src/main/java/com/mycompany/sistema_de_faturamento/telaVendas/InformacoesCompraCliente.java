@@ -4,17 +4,24 @@
  */
 package com.mycompany.sistema_de_faturamento.telaVendas;
 
+import com.mycompany.sistema_de_faturamento.Cliente;
+
 /**
  *
  * @author Jackson
  */
 public class InformacoesCompraCliente extends javax.swing.JFrame {
     private int idCliente;
+    private Cliente cliente = new Cliente();
 
     public InformacoesCompraCliente(int idCliente){
-        this.idCliente = idCliente;
-        System.out.println("Passou");
         initComponents();
+        System.out.println(this.idCliente);
+        cliente.buscarClientesBanco();
+        nomeCliente.setText(cliente.buscarCliente(idCliente).getNome());
+        
+        
+        
         setVisible(rootPaneCheckingEnabled);
         
     }

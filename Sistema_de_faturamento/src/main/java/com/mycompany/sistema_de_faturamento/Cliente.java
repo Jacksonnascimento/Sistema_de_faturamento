@@ -54,6 +54,18 @@ public class Cliente {
         return null;
         
     }
+    
+    public Cliente buscarCliente (int id){
+        for(Cliente cli : clientes){
+            if(id == cli.getId()){
+                return cli;
+                
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Informe um ID válido!");
+        return null;
+        
+    }
     public void addClienteBanco(String nome, String email, String cpf) throws SQLException{
         BancoDados banco = new BancoDados();
         String insert = String.format("INSERT INTO CLIENTE VALUES ('%s', '%s', '%s')", nome, email, cpf);

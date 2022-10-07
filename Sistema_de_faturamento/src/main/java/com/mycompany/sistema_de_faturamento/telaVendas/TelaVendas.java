@@ -322,7 +322,7 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_compraActionPerformed
 
     private void removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerActionPerformed
-         InformacoesCompraCliente inforCompra = new InformacoesCompraCliente(12);
+         InformacoesCompraCliente inforCompra = new InformacoesCompraCliente(idCliente);
     }//GEN-LAST:event_removerActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
