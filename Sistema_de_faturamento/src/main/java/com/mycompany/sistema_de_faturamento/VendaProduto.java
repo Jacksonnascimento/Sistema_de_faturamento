@@ -6,6 +6,7 @@ package com.mycompany.sistema_de_faturamento;
 
 import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -16,8 +17,19 @@ public class VendaProduto {
     private int idCliente;
     private int idProduto;
     private String cpf;
-    BancoDados banco;
+    private BancoDados banco;
+    private int idCompra;
     private String codCompra;
+    private String dataCompra;
+    
+    public void addVendaProduto(int idCompra, String codCompra, int idCliente, int idProduto, String dataCompra){
+        this.idCompra = idCompra;
+        this.codCompra = codCompra;
+        this.idCliente = idCliente;
+        this.idProduto = idProduto;
+        this.dataCompra = dataCompra;
+        
+    }
     
   public void addVendaProdutoBanco(int idCliente, int idProduto){
       banco = new BancoDados();
@@ -37,12 +49,12 @@ public class VendaProduto {
                         );
         
         banco = new BancoDados();
-        insert = String.format("INSERT INTO COMPRAS VALUES('%s',GETDATE(), '%s')", codCompra, idCliente);
+        insert = String.format("INSERT INTO COMPRAS VALUES('%s',GETDATE(), '%s')", getCodCompra(), idCliente);
         banco.insertOUpdate(insert);
         insert = "";
         
         for(Produto produto : produtos.getProdutos()){
-            insert += String.format("INSERT INTO COMPRA_CLIENTE (COD_DA_COMPRA, ID_CLIENTE, ID_PRODUTO) VALUES('%s', %s, %s)\n", codCompra, idCliente, produto.getId());
+            insert += String.format("INSERT INTO COMPRA_CLIENTE (COD_DA_COMPRA, ID_CLIENTE, ID_PRODUTO) VALUES('%s', %s, %s)\n", getCodCompra(), idCliente, produto.getId());
         }
        
         banco = new BancoDados();
@@ -87,7 +99,50 @@ public class VendaProduto {
         this.idProduto = idProduto;
     }
 
+    
+    public ArrayList<VendaProduto> buscarUltimaCompra(int idCliente){
+        banco = new BancoDados();
+        VendaProduto venda;
+        
+        ArrayList<VendaProduto> vendasProduto = new ArrayList<>();
+            
+        String select = String.format("SELECT CC.*, C.DATA_DA_COMPRA FROM COMPRA_CLIENTE CC INNER JOIN COMPRAS C ON CC.COD_DA_COMPRA = C.COD_DA_COMPRA\n" +
+                        "WHERE CC.COD_DA_COMPRA = \n" +
+                        "(SELECT TOP 1 COD_DA_COMPRA FROM COMPRAS WHERE ID_CLIENTE = CC.ID_CLIENTE ORDER BY DATA_DA_COMPRA DESC)\n" +
+                        "AND CC.ID_CLIENTE = %s", idCliente);
+        
+        select = banco.select(select, 5);
+        
+        String [] linhas = select.split("\n");
+        
+        for (String linha : linhas){
+            String [] colunas = linha.split(",");
+            
+            venda = new VendaProduto();
+            
+            venda.addVendaProduto(Integer.parseInt(colunas[0]), colunas[1], Integer.parseInt(colunas[2]), Integer.parseInt(colunas[3]), colunas[4]);
+            
+            vendasProduto.add(venda);
+        }
+                
+        return vendasProduto;
+    }
 
+    /**
+     * @return the codCompra
+     */
+    public String getCodCompra() {
+        return codCompra;
+    }
+
+    /**
+     * @return the dataCompra
+     */
+    public String getDataCompra() {
+        return dataCompra;
+    }
+    
+    
 
     
     

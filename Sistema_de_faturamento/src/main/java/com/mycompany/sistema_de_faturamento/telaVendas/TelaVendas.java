@@ -26,6 +26,7 @@ public class TelaVendas extends javax.swing.JFrame {
     DefaultListModel modelValor = new DefaultListModel();
     double valorTotalCompra = 0;
     Cliente cliente = new Cliente();
+    private int idCliente;
     
     
     
@@ -253,6 +254,7 @@ public class TelaVendas extends javax.swing.JFrame {
         
        if(cliente.buscarCliente(cpfdoCliente.getText()) != null){
             nomeDoCliente.setText(cliente.buscarCliente(cpfdoCliente.getText()).getNome());
+            idCliente = cliente.buscarCliente(cpfdoCliente.getText()).getId();
         } else{
             cpfdoCliente.setText(null);
             nomeDoCliente.setText(null);
@@ -300,6 +302,8 @@ public class TelaVendas extends javax.swing.JFrame {
             venda.addVendasProdutosBanco(cliente.buscarCliente(cpfdoCliente.getText()).getId(), listaComprasProduto);
             CaixaDaEmpresa caixa = new CaixaDaEmpresa();
             caixa.SomarValorganhoBanco(valorTotalCompra);
+           
+            
         } 
         
         
@@ -318,7 +322,7 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_compraActionPerformed
 
     private void removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerActionPerformed
-
+         InformacoesCompraCliente inforCompra = new InformacoesCompraCliente(12);
     }//GEN-LAST:event_removerActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

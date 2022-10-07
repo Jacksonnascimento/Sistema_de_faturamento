@@ -4,26 +4,28 @@
  */
 package testes;
 
-import com.mycompany.sistema_de_faturamento.Cliente;
-import com.mycompany.sistema_de_faturamento.Estoque;
-import com.mycompany.sistema_de_faturamento.EstoqueProdutos;
-import java.sql.SQLException;
+import com.mycompany.sistema_de_faturamento.VendaProduto;
 
-import java.time.LocalDateTime;
-import java.util.Random;
+
+
+
 
 /**
  *
  * @author Jackson
  */
 public class Testes {
-    public static void main(String[] args) throws SQLException {
-        Estoque estoque;
+    public static void main(String[] args)  {
+        VendaProduto vendas = new VendaProduto();
         
-        for(int i = 1; i <= 23; i++){
-            estoque = new Estoque();
-            estoque.addQuanBanco(i, 0);
+        
+        for(VendaProduto venda : vendas.buscarUltimaCompra(27)){
+            System.out.println(venda.getIdCliente());
+            System.out.println(venda.getIdProduto());
+            System.out.println(venda.getCodCompra());
+            System.out.println(venda.getDataCompra());
         }
+        
         
         
     }
