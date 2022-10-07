@@ -54,7 +54,8 @@ public class VendaProduto {
         insert = "";
         
         for(Produto produto : produtos.getProdutos()){
-            insert += String.format("INSERT INTO COMPRA_CLIENTE (COD_DA_COMPRA, ID_CLIENTE, ID_PRODUTO) VALUES('%s', %s, %s)\n", getCodCompra(), idCliente, produto.getId());
+            insert += String.format("INSERT INTO COMPRA_CLIENTE (COD_DA_COMPRA, ID_CLIENTE, ID_PRODUTO) VALUES('%s', %s, %s)\n", 
+                    getCodCompra(), idCliente, produto.getId());
         }
        
         banco = new BancoDados();
