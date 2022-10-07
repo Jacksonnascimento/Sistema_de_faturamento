@@ -62,6 +62,34 @@ public class VendaProduto {
         banco.insertOUpdate(insert);
     }
     
+    public ArrayList<VendaProduto> buscarUltimaCompra(int idCliente){
+        banco = new BancoDados();
+        VendaProduto venda;
+        
+        ArrayList<VendaProduto> vendasProduto = new ArrayList<>();
+            
+        String select = String.format("SELECT CC.*, C.DATA_DA_COMPRA FROM COMPRA_CLIENTE CC INNER JOIN COMPRAS C ON CC.COD_DA_COMPRA = C.COD_DA_COMPRA\n" +
+                        "WHERE CC.COD_DA_COMPRA = \n" +
+                        "(SELECT TOP 1 COD_DA_COMPRA FROM COMPRAS WHERE ID_CLIENTE = CC.ID_CLIENTE ORDER BY DATA_DA_COMPRA DESC)\n" +
+                        "AND CC.ID_CLIENTE = %s", idCliente);
+        
+        select = banco.select(select, 5);
+        
+        String [] linhas = select.split("\n");
+        
+        for (String linha : linhas){
+            String [] colunas = linha.split(",");
+            
+            venda = new VendaProduto();
+            
+            venda.addVendaProduto(Integer.parseInt(colunas[0]), colunas[1], Integer.parseInt(colunas[2]), Integer.parseInt(colunas[3]), colunas[4]);
+            
+            vendasProduto.add(venda);
+        }
+                
+        return vendasProduto;
+    }
+    
     public int quantidadeVendasProduto(int idProduto){
         String select = String.format("SELECT COUNT(ID_PRODUTO) FROM COMPRA WHERE ID_PRODUTO = %s", idProduto);
         banco = new BancoDados();
@@ -101,33 +129,7 @@ public class VendaProduto {
     }
 
     
-    public ArrayList<VendaProduto> buscarUltimaCompra(int idCliente){
-        banco = new BancoDados();
-        VendaProduto venda;
-        
-        ArrayList<VendaProduto> vendasProduto = new ArrayList<>();
-            
-        String select = String.format("SELECT CC.*, C.DATA_DA_COMPRA FROM COMPRA_CLIENTE CC INNER JOIN COMPRAS C ON CC.COD_DA_COMPRA = C.COD_DA_COMPRA\n" +
-                        "WHERE CC.COD_DA_COMPRA = \n" +
-                        "(SELECT TOP 1 COD_DA_COMPRA FROM COMPRAS WHERE ID_CLIENTE = CC.ID_CLIENTE ORDER BY DATA_DA_COMPRA DESC)\n" +
-                        "AND CC.ID_CLIENTE = %s", idCliente);
-        
-        select = banco.select(select, 5);
-        
-        String [] linhas = select.split("\n");
-        
-        for (String linha : linhas){
-            String [] colunas = linha.split(",");
-            
-            venda = new VendaProduto();
-            
-            venda.addVendaProduto(Integer.parseInt(colunas[0]), colunas[1], Integer.parseInt(colunas[2]), Integer.parseInt(colunas[3]), colunas[4]);
-            
-            vendasProduto.add(venda);
-        }
-                
-        return vendasProduto;
-    }
+    
 
     /**
      * @return the codCompra
