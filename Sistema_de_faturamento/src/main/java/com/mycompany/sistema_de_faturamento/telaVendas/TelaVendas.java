@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -319,10 +320,17 @@ public class TelaVendas extends javax.swing.JFrame {
         nomeDoCliente.setText(null);
         
         
+        try {
+            InformacoesCompraCliente inforCompra = new InformacoesCompraCliente(idCliente);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaVendas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }//GEN-LAST:event_compraActionPerformed
 
     private void removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerActionPerformed
-         InformacoesCompraCliente inforCompra = new InformacoesCompraCliente(idCliente);
+        JOptionPane.showMessageDialog(rootPane, "Botão sem função no momento");
     }//GEN-LAST:event_removerActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
