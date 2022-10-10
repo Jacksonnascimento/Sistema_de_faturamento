@@ -40,15 +40,18 @@ public class InformacoesCompraCliente extends javax.swing.JFrame {
     
     public void  preehcerInfCompra() throws SQLException{
         VendaProduto vendaPro = new VendaProduto();
-        codigoCompra.setText(vendaPro.buscarUltimaCompra(idCliente).get(0).getCodCompra());
-        dataCompra.setText(vendaPro.buscarUltimaCompra(idCliente).get(0).getDataCompra());
+        ArrayList<VendaProduto> vendaProList = vendaPro.buscarUltimaCompra(idCliente);
+        
+        
+        codigoCompra.setText(vendaProList.get(0).getCodCompra());
+        dataCompra.setText(vendaProList.get(0).getDataCompra());
         Produtos produtos = new Produtos();
         produtos.buscarProdutosBancos();
         modelDes = new DefaultListModel();
         modelValor = new DefaultListModel();
         double valorTotal = 0;
         
-        for (VendaProduto vepro : vendaPro.buscarUltimaCompra(idCliente) ){
+        for (VendaProduto vepro : vendaProList){
             modelDes.addElement(produtos.buscarPorID(vepro.getIdProduto()).getDscricao());
             modelValor.addElement(produtos.buscarPorID(vepro.getIdProduto()).getValor());
             valorTotal += produtos.buscarPorID(vepro.getIdProduto()).getValor();

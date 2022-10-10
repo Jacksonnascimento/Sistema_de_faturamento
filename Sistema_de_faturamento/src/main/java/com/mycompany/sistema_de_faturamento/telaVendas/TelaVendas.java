@@ -6,6 +6,7 @@ package com.mycompany.sistema_de_faturamento.telaVendas;
 
 import com.mycompany.sistema_de_faturamento.CaixaDaEmpresa;
 import com.mycompany.sistema_de_faturamento.Cliente;
+import com.mycompany.sistema_de_faturamento.Produto;
 import com.mycompany.sistema_de_faturamento.Produtos;
 import com.mycompany.sistema_de_faturamento.VendaProduto;
 import com.mycompany.sistema_de_faturamento.telaOpcoes.TelaOpcoes;
@@ -283,12 +284,13 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_idActionPerformed
 
     private void adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarActionPerformed
-        listaComprasProduto.addProduto(produtosBanco.buscarPorID((Integer.parseInt(id.getText()))));
-        modelDes.addElement(produtosBanco.buscarPorID((Integer.parseInt(id.getText()))).getDscricao());
-        modelValor.addElement("R$ " + String.format("%.2f",produtosBanco.buscarPorID((Integer.parseInt(id.getText()))).getValor()));
+        Produto produto = produtosBanco.buscarPorID((Integer.parseInt(id.getText())));
+        listaComprasProduto.addProduto(produto);
+        modelDes.addElement(produto.getDscricao());
+        modelValor.addElement("R$ " + String.format("%.2f",produto.getValor()));
         desList.setModel(modelDes);
         valorLista.setModel(modelValor);
-        valorTotalCompra += produtosBanco.buscarPorID((Integer.parseInt(id.getText()))).getValor();
+        valorTotalCompra += produto.getValor();
         String valorSring = "R$ " + String.format("%.2f",valorTotalCompra);
         valorTotal.setText(valorSring);
         zerarInforProdu();
@@ -319,12 +321,14 @@ public class TelaVendas extends javax.swing.JFrame {
         listaComprasProduto = new Produtos();
         nomeDoCliente.setText(null);
         
-        
+    
         try {
             InformacoesCompraCliente inforCompra = new InformacoesCompraCliente(idCliente);
         } catch (SQLException ex) {
             Logger.getLogger(TelaVendas.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+            System.out.println("2passou");
         
         
     }//GEN-LAST:event_compraActionPerformed

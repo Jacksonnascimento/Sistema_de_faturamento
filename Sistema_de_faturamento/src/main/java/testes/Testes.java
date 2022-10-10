@@ -5,6 +5,8 @@
 package testes;
 
 import com.mycompany.sistema_de_faturamento.VendaProduto;
+import static java.lang.Math.random;
+import java.util.Random;
 
 
 
@@ -16,16 +18,9 @@ import com.mycompany.sistema_de_faturamento.VendaProduto;
  */
 public class Testes {
     public static void main(String[] args)  {
-        VendaProduto vendas = new VendaProduto();
+        Random random = new Random();
         
-        
-        for(VendaProduto venda : vendas.buscarUltimaCompra(27)){
-            System.out.println(venda.getIdCliente());
-            System.out.println(venda.getIdProduto());
-            System.out.println(venda.getCodCompra());
-            System.out.println(venda.getDataCompra());
-        }
-        
+        System.out.println(random.nextDouble());
         
         
     }

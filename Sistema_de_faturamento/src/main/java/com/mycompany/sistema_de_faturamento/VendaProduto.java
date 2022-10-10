@@ -40,12 +40,12 @@ public class VendaProduto {
         String insert;
         Random random = new Random();
         codCompra = 
-                String.format("%s:%s:%s:%s:%s", 
+                String.format("%s%s%s%s%s", 
                         LocalDateTime.now().getYear() 
                         ,idCliente, 
                         LocalDateTime.now().getDayOfYear(), 
                         LocalDateTime.now().getHour(),
-                        random.nextInt()
+                        random.nextDouble()
                         );
         
         banco = new BancoDados();
@@ -65,7 +65,6 @@ public class VendaProduto {
     public ArrayList<VendaProduto> buscarUltimaCompra(int idCliente){
         banco = new BancoDados();
         VendaProduto venda;
-        
         ArrayList<VendaProduto> vendasProduto = new ArrayList<>();
             
         String select = String.format("""
