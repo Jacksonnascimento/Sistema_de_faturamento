@@ -18,10 +18,10 @@ import java.sql.Statement;
 public class BancoDados {
     
         String connectionUrl
-                = "jdbc:sqlserver://localhost:1433;"
+                = "jdbc:sqlserver://191.233.29.0:1433;" //servidor Azure
                 + "database=Sistema_Faturamento;"
                 + "user=sa;"
-                + "password=87519023;"
+                + "password=@jn87519023;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
