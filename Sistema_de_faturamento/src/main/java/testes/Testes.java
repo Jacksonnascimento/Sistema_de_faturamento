@@ -4,9 +4,7 @@
  */
 package testes;
 
-import com.mycompany.sistema_de_faturamento.VendaProduto;
-import static java.lang.Math.random;
-import java.util.Random;
+
 
 
 
@@ -18,10 +16,6 @@ import java.util.Random;
  */
 public class Testes {
     public static void main(String[] args)  {
-        Random random = new Random();
-        
-        System.out.println(random.nextDouble());
-        
         
     }
 }
