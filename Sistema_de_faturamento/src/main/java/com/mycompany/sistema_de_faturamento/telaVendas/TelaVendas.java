@@ -328,7 +328,7 @@ public class TelaVendas extends javax.swing.JFrame {
             Logger.getLogger(TelaVendas.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-            System.out.println("2passou");
+            
         
         
     }//GEN-LAST:event_compraActionPerformed
