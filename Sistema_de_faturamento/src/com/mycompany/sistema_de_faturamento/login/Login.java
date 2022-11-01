@@ -4,6 +4,7 @@
  */
 package com.mycompany.sistema_de_faturamento.login;
 
+import com.mycompany.sistema_de_faturamento.Pessoa;
 import com.mycompany.sistema_de_faturamento.bancoDeDados.BancoDados;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,29 +14,23 @@ import javax.swing.JOptionPane;
  *
  * @author jacks
  */
-public class Login {
+public class Login extends Pessoa{
 
-    private int id;
-    private String nome;
+    
     private String tipo;
     private String senha;
-    private String email;
+ 
     private String nomeUsuario;
     private ArrayList<Login> usuarios = new ArrayList();
-    /**
-     * @return the nome
-     */
-    public String getNome() {
-        return nome;
+  
+    
+    public Login() {
+        super();
     }
 
-    /**
-     * @param nome the nome to set
-     */
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+  
 
+ 
     /**
      * @return the tipo
      */
@@ -64,25 +59,14 @@ public class Login {
         this.senha = senha;
     }
 
-    /**
-     * @return the email
-     */
-    public String getEmail() {
-        return email;
-    }
 
-    /**
-     * @param email the email to set
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
+   
 
     public void criarLogin(int id, String nome, String nomeUsuario, String tipo, String senha, String email) {
-        this.nome = nome;
+        super.setNome(nome); 
         this.senha = senha;
-        this.email = email;
-        this.id = id;
+        super.setEmail(email); 
+        super.setId(id);
         this.nomeUsuario = nomeUsuario;
         this.tipo = tipo;
 
@@ -98,20 +82,7 @@ public class Login {
         banco.insertOUpdate(insert);
     }
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-    
     public void criarBuscarUsuariosBanco(){
         String select = "SELECT * FROM USUARIO";
         BancoDados banco = new BancoDados();

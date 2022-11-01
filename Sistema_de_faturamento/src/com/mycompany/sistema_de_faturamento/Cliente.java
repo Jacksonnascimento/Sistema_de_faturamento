@@ -13,39 +13,40 @@ import javax.swing.JOptionPane;
  *
  * @author Jackson
  */
-public class Cliente {
-    private int  id;
-    private String nome;
-    private String cpf;
-    private String email;
-    private ArrayList<Cliente> clientes = new ArrayList();
+public class Cliente extends Pessoa {
 
+    private String cpf;
+    private ArrayList<Cliente> clientes = new ArrayList();
     
-    public void addCliente(int id, String nome,  String email, String cpf ){
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.setEmail(email);
+    public Cliente() {
+        super();
     }
     
-    public void buscarClientesBanco(){
+    public void addCliente(int id, String nome, String email, String cpf) {
+        super.setId(id);
+        super.setNome(nome);
+        this.cpf = cpf;
+        super.setEmail(email);
+    }
+    
+    public void buscarClientesBanco() {
         BancoDados banco = new BancoDados();
         String select = ("SELECT * FROM CLIENTE");
         select = banco.select(select, 4);
         
-        String [] linhas = select.split("\n");
+        String[] linhas = select.split("\n");
         
-        for(String linha : linhas){
+        for (String linha : linhas) {
             Cliente cliente = new Cliente();
-            String [] colunas = linha.split(",");
-            cliente.addCliente(Integer.parseInt(colunas[0]), colunas[1], colunas[2], colunas[3]);      
+            String[] colunas = linha.split(",");
+            cliente.addCliente(Integer.parseInt(colunas[0]), colunas[1], colunas[2], colunas[3]);            
             clientes.add(cliente);
         }
     }
     
-    public Cliente buscarCliente (String cpf){
-        for(Cliente cli : clientes){
-            if(cpf.equals(cli.getCpf())){
+    public Cliente buscarCliente(String cpf) {
+        for (Cliente cli : clientes) {
+            if (cpf.equals(cli.getCpf())) {
                 return cli;
                 
             }
@@ -55,9 +56,9 @@ public class Cliente {
         
     }
     
-    public Cliente buscarCliente (int id){
-        for(Cliente cli : clientes){
-            if(id == cli.getId()){
+    public Cliente buscarCliente(int id) {
+        for (Cliente cli : clientes) {
+            if (id == cli.getId()) {
                 return cli;
                 
             }
@@ -66,40 +67,11 @@ public class Cliente {
         return null;
         
     }
-    public void addClienteBanco(String nome, String email, String cpf) throws SQLException{
+
+    public void addClienteBanco(String nome, String email, String cpf) throws SQLException {
         BancoDados banco = new BancoDados();
         String insert = String.format("INSERT INTO CLIENTE VALUES ('%s', '%s', '%s')", nome, email, cpf);
         banco.insertOUpdate(insert);
-    }
-    
-    
-    /**
-     * @return the id
-     */
-    
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    /**
-     * @return the nome
-     */
-    public String getNome() {
-        return nome;
-    }
-
-    /**
-     * @param nome the nome to set
-     */
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     /**
@@ -115,21 +87,5 @@ public class Cliente {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-
-    /**
-     * @return the email
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * @param email the email to set
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-  
     
 }
